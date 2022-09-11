@@ -1,0 +1,2 @@
+# Requeridas para el proyecto
+djangorestframework==3.13.1

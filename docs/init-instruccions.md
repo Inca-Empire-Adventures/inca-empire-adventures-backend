@@ -1,7 +1,7 @@
 * Notar que se requieren dependenciales adicionales requeridas 
 ```
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r requerimientos.txt
 ```
 
 #### Comando para iniciar una imagen de postgres en docker
