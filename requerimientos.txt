@@ -2,3 +2,4 @@
 djangorestframework==3.13.1
 pymysql==0.2.5
 cryptography==38.0.1
+mysqlclient=2.1.1
