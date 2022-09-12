@@ -1,0 +1,3 @@
+#Activar Entorno
+ django-rest-env\Scripts\activate.bat
+

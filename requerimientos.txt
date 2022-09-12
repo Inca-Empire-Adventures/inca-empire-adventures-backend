@@ -1,5 +1,5 @@
-# Requeridas para el proyecto
+# Requeridas para el 
 djangorestframework==3.13.1
-pymysql==0.2.5
+pymysql==1.0.2
 cryptography==38.0.1
-mysqlclient=2.1.1
+mysqlclient==2.1.1
