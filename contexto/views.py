@@ -4,6 +4,7 @@ from contexto.models import Contexto
 from contexto.serializers import ContextoSerializer
 from rest_framework.decorators import action
 from rest_framework import renderers
+from rest_framework import permissions
 
 # Create your views here.
 class ContextoViewSet(viewsets.ModelViewSet):
@@ -17,6 +18,3 @@ class ContextoViewSet(viewsets.ModelViewSet):
     def highlight(self, request, *args, **kwargs):
         snippet = self.get_object()
         return Response(snippet.highlighted)
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)

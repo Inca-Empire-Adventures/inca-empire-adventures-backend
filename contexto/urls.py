@@ -15,6 +15,6 @@ contexto_detail = ContextoViewSet.as_view({
 
 
 urlpatterns = format_suffix_patterns([
-    path('contexto/', contexto_list, name='contexto-list'),
-    path('contexto/<int:pk>/', contexto_detail, name='contexto-detail'),
+    path('', contexto_list, name='contexto-list'),
+    path('<int:pk>/', contexto_detail, name='contexto-detail'),
 ])
