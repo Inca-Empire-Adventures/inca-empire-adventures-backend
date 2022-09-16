@@ -4,7 +4,11 @@ from contexto.models import Contexto
 from contexto.serializers import ContextoSerializer
 from rest_framework.decorators import action
 from rest_framework import renderers
-from rest_framework import permissions
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6B")
+
+model = AutoModelForCausalLM.from_pretrained("EleutherAI/gpt-j-6B")
 
 # Create your views here.
 class ContextoViewSet(viewsets.ModelViewSet):
@@ -16,5 +20,6 @@ class ContextoViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
     def highlight(self, request, *args, **kwargs):
-        snippet = self.get_object()
-        return Response(snippet.highlighted)
+        print("BODY: ")
+        contexto = self.get_object()
+        return Response(contexto.highlighted)
