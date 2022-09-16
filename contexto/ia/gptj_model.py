@@ -1,16 +1,10 @@
-import torch
-import transformers
+from happytransformer import GENSettings
+from happytransformer import HappyGeneration
 
-from transformers.models.gptj import GPTJForCausalLM
+happy_gen = HappyGeneration("GPT-NEO-1.3B", "EleutherAI/gpt-neo-1.3B")
 
-
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-
-tokenizer = transformers.AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6B")
-gpt = GPTJForCausalLM.from_pretrained("hivemind/gpt-j-6B-8bit", low_cpu_mem_usage=True).to(device)
-
-
-prompt = tokenizer("A cat sat on a mat", return_tensors='pt')
-prompt = {key: value.to(device) for key, value in prompt.items()}
-out = gpt.generate(**prompt, min_length=128, max_length=128, do_sample=True)
-tokenizer.decode(out[0])
+args = GENSettings(no_repeat_ngram_size=2)
+result = happy_gen.generate_text("The god of sun came to the earth to help the inca empire", args=args)
+print(result.text)
+top_k_sampling_settings = GENSettings(do_sample=True, early_stopping=False, top_k=50, temperature=0.7)
+print(result.text)
