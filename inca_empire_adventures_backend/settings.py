@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'personaje'
+    'personaje',
+    'races',
+    'professions',
+    'equipments',
+    'characters'
 ]
 
 MIDDLEWARE = [
@@ -81,7 +85,7 @@ DATABASES = {
         'NAME': 'inca-db',
         'HOST': '127.0.0.1',
         'PORT': 3306,
-        'PASSWORD': 'password',
+        'PASSWORD': '280400',
         'USER': 'root'
     }
 }
