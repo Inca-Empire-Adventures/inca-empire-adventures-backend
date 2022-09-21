@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'personaje',
-    'contexto'
+    'contexto',
     'races',
     'professions',
     'equipments',
@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'inca-db',
         'HOST': '127.0.0.1',
         'PORT': 3306,
-        'PASSWORD': 'root',
+        'PASSWORD': 'password',
         'USER': 'root'
     }
 }

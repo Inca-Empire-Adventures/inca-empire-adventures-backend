@@ -9,8 +9,11 @@ from asgiref.sync import sync_to_async
 import time
 from googletrans import Translator
 
+"""
 happy_gen = HappyGeneration("GPT-NEO", "EleutherAI/gpt-neo-1.3B")
 argsIA = GENSettings(no_repeat_ngram_size=2,temperature=0.7,min_length=20,top_k=50, do_sample=True)
+
+"""
 # Create your views here.
 class ContextoViewSet(viewsets.ModelViewSet):
     """
@@ -19,7 +22,7 @@ class ContextoViewSet(viewsets.ModelViewSet):
     queryset = Contexto.objects.all()
     serializer_class = ContextoSerializer
 
-
+    """
     @action(detail=True, methods=['POST'], name='create context')
     def create(self, request,*args, **kwargs):
         context_data = request.data
@@ -34,7 +37,7 @@ class ContextoViewSet(viewsets.ModelViewSet):
         new_context.save()
         serializer = ContextoSerializer(new_context)
         return Response(serializer.data)
-
+    """
 
 class ContextoOriginalViewSet(viewsets.ModelViewSet):
     """
@@ -43,7 +46,7 @@ class ContextoOriginalViewSet(viewsets.ModelViewSet):
     queryset = Contexto.objects.all()
     serializer_class = ContextoSerializer
 
-
+    """
     @action(detail=True, methods=['POST'], name='create context inglish')
     def create(self, request,*args, **kwargs):
         context_data = request.data
@@ -54,3 +57,4 @@ class ContextoOriginalViewSet(viewsets.ModelViewSet):
         new_context.save()
         serializer = ContextoSerializer(new_context)
         return Response(serializer.data)
+    """
