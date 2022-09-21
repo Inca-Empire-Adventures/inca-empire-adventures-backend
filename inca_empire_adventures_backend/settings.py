@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'personaje',
     'contexto'
+    'races',
+    'professions',
+    'equipments',
+    'characters'
 ]
 
 MIDDLEWARE = [
