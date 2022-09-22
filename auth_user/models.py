@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from characters.serializers import CharacterSerializer
 
 from characters.models import Character
 # Create your models here.
@@ -12,12 +13,14 @@ class User(AbstractUser):
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    character = serializers.SlugRelatedField(
-        many=True,
-        read_only=True,
-        slug_field='id'
-    )
+    character = serializers.PrimaryKeyRelatedField(many=False, queryset=Character.objects.all(),allow_null = True)
 
     class Meta:
         model = User
+
         fields = ['url', 'username','character']
+
+    def create(self, validated_data):
+        user = User.objects.create(**validated_data)
+        user.save()
+        return user
