@@ -1,3 +1,5 @@
 #Activar Entorno
- django-rest-env\Scripts\activate.bat
+django-rest-env\Scripts\activate.bat
 
+# crear Entorno
+python -m venv django-rest-env
