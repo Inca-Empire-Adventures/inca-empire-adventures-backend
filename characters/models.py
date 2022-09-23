@@ -8,7 +8,7 @@ from races.models import Race
 class Character(models.Model):
     nameGroup = models.CharField(max_length=25)
     namePlayer = models.CharField(max_length=25)
-    profession = models.OneToOneField(Profession, on_delete=models.CASCADE, null=True)
+    profession = models.ForeignKey(Profession, on_delete=models.SET_NULL, null=True)
     race = models.OneToOneField(Race, on_delete=models.CASCADE, null=True)
 
    

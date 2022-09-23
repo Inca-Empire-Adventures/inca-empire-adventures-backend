@@ -4,6 +4,7 @@ from characters.views import CharacterViewSet
 from contexto.views import ContextoViewSet
 
 from auth_user.views import UserViewSet
+from equipments.views import EquipmentViewSet
 from professions.views import ProfessionsViewSet
 from races.views import RacesViewSet
 
@@ -14,6 +15,9 @@ router.register(r'users', UserViewSet)
 router.register(r'characters',CharacterViewSet)
 router.register(r'professions',ProfessionsViewSet)
 router.register(r'races',RacesViewSet)
+router.register(r'equipments',EquipmentViewSet)
+
+
 
 
 # Wire up our API using automatic URL routing.
@@ -22,5 +26,4 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('contexto/', include('contexto.urls')),
-    path('', include('equipments.urls')),
 ]
