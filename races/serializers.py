@@ -4,4 +4,4 @@ from races.models import Race
 class RaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Race
-        fields = ['id', 'name']
+        fields = ['id', 'name','url']
