@@ -93,7 +93,7 @@ DATABASES = {
         'NAME': 'inca-db',
         'HOST': '127.0.0.1',
         'PORT': 3306,
-        'PASSWORD': 'password',
+        'PASSWORD': 'root',
         'USER': 'root'
     }
 }
