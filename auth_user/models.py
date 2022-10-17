@@ -7,7 +7,7 @@ from characters.models import Character
 # Create your models here.
 class User(AbstractUser):
     username = models.CharField(max_length=20, unique=True)
-    character = models.OneToOneField(Character, on_delete=models.CASCADE, null=True)
+    character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.username
 
@@ -17,7 +17,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-
         fields = ['url', 'username','character']
 
     def create(self, validated_data):
