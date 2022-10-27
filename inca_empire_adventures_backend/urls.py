@@ -7,7 +7,7 @@ from auth_user.views import UserViewSet
 from equipments.views import EquipmentViewSet
 from professions.views import ProfessionsViewSet
 from races.views import RacesViewSet
-
+from statistics_user.views import StatisticsUserViewSet 
 
 
 router = routers.DefaultRouter()
@@ -16,6 +16,7 @@ router.register(r'characters',CharacterViewSet)
 router.register(r'professions',ProfessionsViewSet)
 router.register(r'races',RacesViewSet)
 router.register(r'equipments',EquipmentViewSet)
+router.register(r'statistics',StatisticsUserViewSet)
 
 
 

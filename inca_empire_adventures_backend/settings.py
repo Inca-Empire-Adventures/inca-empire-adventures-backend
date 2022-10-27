@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'races',
     'professions',
     'equipments',
-    'characters'
+    'characters',
+    'statistics_user'
 ]
 
 MIDDLEWARE = [

@@ -12,10 +12,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Contexto',
+            name='StatisticsUser',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('text_generated', models.TextField()),
+                ('strength', models.IntegerField()),
+                ('intelligence', models.IntegerField()),
+                ('dexterity', models.IntegerField()),
+                ('charisma', models.IntegerField()),
+                ('wisdom', models.IntegerField()),
+                ('constitucion', models.IntegerField()),
             ],
         ),
     ]
