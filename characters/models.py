@@ -1,14 +1,13 @@
 from django.db import models
-
-from professions.models import Profession
-from races.models import Race
+from auth_user.models import User
+from statistics_user.models import StatisticsUser
 
 
 # Create your models here.
 class Character(models.Model):
-    nameGroup = models.CharField(max_length=25)
-    namePlayer = models.CharField(max_length=25)
-    profession = models.ForeignKey(Profession, on_delete=models.SET_NULL, null=True)
-    race = models.OneToOneField(Race, on_delete=models.CASCADE, null=True)
+    characterName = models.CharField(max_length=25)
+    statisctic = models.OneToOneField(StatisticsUser,on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
 
    

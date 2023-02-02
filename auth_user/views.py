@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework import permissions
-from auth_user.models import UserSerializer, User
+from auth_user.models import User
+from auth_user.serializers import UserSerializer
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):

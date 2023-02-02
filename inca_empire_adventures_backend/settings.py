@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,11 +39,17 @@ INSTALLED_APPS = [
     'corsheaders',
     'auth_user',
     'contexto',
-    'races',
+    'ethnicity',
     'professions',
     'equipments',
     'characters',
-    'statistics_user'
+    'statistics_user',
+    'item',
+    'character_detail',
+    'skills',
+    'adventures',
+    'loop',
+    'loop_detail'
 ]
 
 MIDDLEWARE = [
