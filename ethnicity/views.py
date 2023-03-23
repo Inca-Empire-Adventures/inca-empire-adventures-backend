@@ -1,7 +1,8 @@
 from rest_framework import viewsets
 from ethnicity.models import Ethnicity
 from ethnicity.serializers import EthnicitySerializer
-
+from rest_framework.response import Response
+from rest_framework import status
 # Create your views here.
 class EthnicityViewSet(viewsets.ModelViewSet):
     """
