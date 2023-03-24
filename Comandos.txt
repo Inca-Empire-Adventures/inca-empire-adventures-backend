@@ -3,3 +3,12 @@ django-rest-env\Scripts\activate.bat
 
 # crear Entorno
 python -m venv django-rest-env
+
+## Carga de datos inicial(Data de Prueba)
+* Datos actuales a json (Solo cuando se desea cargar datos nuevos)
+``` 
+python manage.py dumpdata > demo_data.json
+```
+* Data demo:
+```
+python manage.py loaddata demo_data.json
