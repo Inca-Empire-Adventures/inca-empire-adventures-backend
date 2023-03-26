@@ -1,0 +1,2 @@
+API_KEY = "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"
+USER_SESION = "SirPlayer"
