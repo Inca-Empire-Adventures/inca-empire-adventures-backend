@@ -4,8 +4,9 @@ from rest_framework import status
 from adventures.serializers import AdventureSerializer
 from rest_framework.response import Response
 import openai
+import os
 
-from inca_empire_adventures_backend.constants import API_KEY, USER_SESION
+from inca_empire_adventures_backend.constants import USER_SESION
 
 # Create your views here.
 
@@ -17,6 +18,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
     serializer_class = AdventureSerializer
 
     def create(self, request, *args, **kwargs):
+        API_KEY = os.environ.get("API_KEY")
         # Obtener el mensaje inicial de la conversación
         prompt_system = f"Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?"
 
