@@ -9,7 +9,6 @@ import os
 from inca_empire_adventures_backend.constants import USER_SESION
 
 # Create your views here.
-
 class AdventureViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows adventures to be viewed or edited.
@@ -47,7 +46,29 @@ class AdventureViewSet(viewsets.ModelViewSet):
         )
 
         # Obtener la respuesta del modelo y crear el objeto Adventure
-        continuation_conversation = response.choices[0].message.content;
+        continuation_conversation = response.choices[0].message.content.replace("\n","");
+
+        # Obtener lista de opciones
+        options = self.obtener_opciones(continuation_conversation); 
+
+        structure_response = {
+            "description": continuation_conversation,
+            "options": options
+        }
 
         headers = self.get_success_headers(response.choices[0])
-        return Response(continuation_conversation, status=status.HTTP_201_CREATED, headers=headers)
+        return Response(structure_response, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def obtener_opciones(self, text):
+        prompt_instrucction = text + ". Del parrafo anterior ¿Puedes darme una lista de las opciones mencionadas separado por guiones ? ";
+        response = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=prompt_instrucction,
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.7,
+        )
+        options = response.choices[0].text.replace("\n","").split('-') 
+
+        return list(filter(bool, options))
