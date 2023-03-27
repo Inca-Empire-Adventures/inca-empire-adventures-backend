@@ -37,12 +37,12 @@ class AdventureViewSet(viewsets.ModelViewSet):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages,
-            temperature=0.7,
-            max_tokens=1024,
+            temperature=0.6,
+            max_tokens=750,
             n=1,
             stop=None,
-            presence_penalty=0.6,
-            frequency_penalty=0.6,
+            presence_penalty=0.4,
+            frequency_penalty=0.4,
         )
 
         # Obtener la respuesta del modelo y crear el objeto Adventure
@@ -64,10 +64,10 @@ class AdventureViewSet(viewsets.ModelViewSet):
         response = openai.Completion.create(
             engine="text-davinci-002",
             prompt=prompt_instrucction,
-            max_tokens=1024,
+            max_tokens=500,
             n=1,
             stop=None,
-            temperature=0.7,
+            temperature=0.5,
         )
         options = response.choices[0].text.replace("\n","").split('-') 
 
