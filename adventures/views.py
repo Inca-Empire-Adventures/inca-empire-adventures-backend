@@ -3,6 +3,7 @@ from adventures.models import Adventures
 from rest_framework import status
 from adventures.serializers import AdventureSerializer
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 import openai
 import os
 
@@ -19,7 +20,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         API_KEY = os.environ.get("API_KEY")
         # Obtener el mensaje inicial de la conversación
-        prompt_system = f"Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?"
+        prompt_system = "Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?"
 
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -57,6 +58,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
         }
 
         headers = self.get_success_headers(response.choices[0])
+        
         return Response(structure_response, status=status.HTTP_201_CREATED, headers=headers)
     
     def obtener_opciones(self, text):

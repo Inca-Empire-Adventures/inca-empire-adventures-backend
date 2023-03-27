@@ -70,9 +70,8 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:4200',
-]
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 ROOT_URLCONF = 'inca_empire_adventures_backend.urls'
 
