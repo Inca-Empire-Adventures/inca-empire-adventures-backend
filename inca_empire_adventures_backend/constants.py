@@ -1,1 +1,2 @@
 USER_SESION = "SirPlayer"
+ID_USER_CHARACTER = "1"
