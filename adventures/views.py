@@ -1,20 +1,17 @@
-from rest_framework import viewsets
-from adventures.enums import RoleType
+from inca_empire_adventures_backend.constants import ID_USER_CHARACTER, USER_SESION
 from adventures.models import Adventures, Conversation
-from rest_framework import status
 from adventures.serializers import AdventureSerializer
+from rest_framework import viewsets, permissions
 from rest_framework.response import Response
+from characters.models import Character
+from adventures.enums import RoleType
+from rest_framework import status
+
 import openai
 import os
-from characters.models import Character
 
-from inca_empire_adventures_backend.constants import ID_USER_CHARACTER, USER_SESION
-
-# Create your views here.
 class AdventureViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows adventures to be viewed or edited.
-    """
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Adventures.objects.all().order_by('id')
     serializer_class = AdventureSerializer
 
@@ -30,23 +27,13 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
         if adventure: 
             conversations = Conversation.objects.filter(adventure=adventure)
-
-            messages = [
-                {'role': 'system', 'content': 'Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?'}, 
-                {'role': 'assistant', 'content': 'Bueno mi nombre es SirPlayer y me encuentro en la epoca del Imperio incaico, Estoy en ayacucho, en la puna del Imperio incaico.'}, 
-                {'role': 'assistant', 'content': 'Entrar en la cueva'}, 
-                {'role': 'system', 'content': 'Perfecto, SirPlayer. Te encuentras en Ayacucho, una región de la puna del Imperio Incaico, rodeado por altas montañas y extensos campos verdes. Eres un guerrero Inca entrenado en el arte de la guerra y la caza, y has sido enviado en una misión especial por el emperador para investigar los rumores de una tribu hostil que ha estado atacando a las aldeas cercanas.Mientras te adentras en las montañas, escuchas un ruido extraño que viene de detrás de una roca grande. ¿Qué haces?'}]
-
+            messages = []
+            
             for message in conversations:
                 messages.append({
                     "role": message.role,
                     "content": message.content
                 })
-
-            print("--------------------------:", adventure)
-            print("--------------------------")
-            print("--------------------------: ", messages)
-            print("--------------------------")
 
             # Iniciar la conversación simulada con el modelo GPT-3.5-turbo
             openai.api_key = API_KEY # Coloca aquí tu propia API key
@@ -133,7 +120,6 @@ class AdventureViewSet(viewsets.ModelViewSet):
         options = response.choices[0].text.replace("\n","").split('-') 
 
         return list(filter(bool, options))
-
 
     def create_conversations(self, request, character):
         # Obtener el mensaje inicial de la conversación

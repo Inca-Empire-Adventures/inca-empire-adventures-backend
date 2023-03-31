@@ -1,6 +1,6 @@
 from statistics_user.models import StatisticsUser
 from statistics_user.serializers import StatisticsUserSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 
 class StatisticsUserViewSet(viewsets.ModelViewSet):
     """
@@ -8,3 +8,4 @@ class StatisticsUserViewSet(viewsets.ModelViewSet):
     """
     queryset = StatisticsUser.objects.all().order_by('id')
     serializer_class = StatisticsUserSerializer
+    permission_classes = [permissions.IsAuthenticated]
