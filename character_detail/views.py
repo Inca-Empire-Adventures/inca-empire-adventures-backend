@@ -2,6 +2,7 @@ from rest_framework import viewsets, permissions
 from character_detail.models import CharacterDetail
 from character_detail.serializers import CharacterDetailSerializer
 from django.db.models import Q
+
 # Create your views here.
 class CharacterDetailViewSet(viewsets.ModelViewSet):
     """

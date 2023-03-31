@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from characters.models import Character
 from adventures.enums import RoleType
 from rest_framework import status
+from django.db.models import Q
+
 
 import openai
 import os
@@ -14,6 +16,18 @@ class AdventureViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     queryset = Adventures.objects.all().order_by('id')
     serializer_class = AdventureSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        # Obtener todos los character_detail que pertenecen al usuario
+        queryset = Adventures.objects.filter(character__user=user)
+
+        # Filtro opcional para buscar por nombre de character
+        character_name = self.request.query_params.get('character_name')
+        
+        if character_name:
+            queryset = queryset.filter(Q(character__user=user) & Q(character__characterName=character_name))
+        return queryset
 
     def create(self, request, *args, **kwargs):
         API_KEY = os.environ.get("API_KEY")
@@ -28,7 +42,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
         if adventure: 
             conversations = Conversation.objects.filter(adventure=adventure)
             messages = []
-            
+
             for message in conversations:
                 messages.append({
                     "role": message.role,
