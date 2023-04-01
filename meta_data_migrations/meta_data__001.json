@@ -75,108 +75,108 @@
         "model": "auth.permission",
         "pk": 9,
         "fields": {
-            "name": "Can add content type",
+            "name": "Can add user",
             "content_type": 3,
-            "codename": "add_contenttype"
+            "codename": "add_user"
         }
     },
     {
         "model": "auth.permission",
         "pk": 10,
         "fields": {
-            "name": "Can change content type",
+            "name": "Can change user",
             "content_type": 3,
-            "codename": "change_contenttype"
+            "codename": "change_user"
         }
     },
     {
         "model": "auth.permission",
         "pk": 11,
         "fields": {
-            "name": "Can delete content type",
+            "name": "Can delete user",
             "content_type": 3,
-            "codename": "delete_contenttype"
+            "codename": "delete_user"
         }
     },
     {
         "model": "auth.permission",
         "pk": 12,
         "fields": {
-            "name": "Can view content type",
+            "name": "Can view user",
             "content_type": 3,
-            "codename": "view_contenttype"
+            "codename": "view_user"
         }
     },
     {
         "model": "auth.permission",
         "pk": 13,
         "fields": {
-            "name": "Can add session",
+            "name": "Can add content type",
             "content_type": 4,
-            "codename": "add_session"
+            "codename": "add_contenttype"
         }
     },
     {
         "model": "auth.permission",
         "pk": 14,
         "fields": {
-            "name": "Can change session",
+            "name": "Can change content type",
             "content_type": 4,
-            "codename": "change_session"
+            "codename": "change_contenttype"
         }
     },
     {
         "model": "auth.permission",
         "pk": 15,
         "fields": {
-            "name": "Can delete session",
+            "name": "Can delete content type",
             "content_type": 4,
-            "codename": "delete_session"
+            "codename": "delete_contenttype"
         }
     },
     {
         "model": "auth.permission",
         "pk": 16,
         "fields": {
-            "name": "Can view session",
+            "name": "Can view content type",
             "content_type": 4,
-            "codename": "view_session"
+            "codename": "view_contenttype"
         }
     },
     {
         "model": "auth.permission",
         "pk": 17,
         "fields": {
-            "name": "Can add user",
+            "name": "Can add session",
             "content_type": 5,
-            "codename": "add_user"
+            "codename": "add_session"
         }
     },
     {
         "model": "auth.permission",
         "pk": 18,
         "fields": {
-            "name": "Can change user",
+            "name": "Can change session",
             "content_type": 5,
-            "codename": "change_user"
+            "codename": "change_session"
         }
     },
     {
         "model": "auth.permission",
         "pk": 19,
         "fields": {
-            "name": "Can delete user",
+            "name": "Can delete session",
             "content_type": 5,
-            "codename": "delete_user"
+            "codename": "delete_session"
         }
     },
     {
         "model": "auth.permission",
         "pk": 20,
         "fields": {
-            "name": "Can view user",
+            "name": "Can view session",
             "content_type": 5,
-            "codename": "view_user"
+            "codename": "view_session"
         }
     },
     {
@@ -543,72 +543,126 @@
         "model": "auth.permission",
         "pk": 61,
         "fields": {
-            "name": "Can add loop",
+            "name": "Can add conversation",
             "content_type": 16,
-            "codename": "add_loop"
+            "codename": "add_conversation"
         }
     },
     {
         "model": "auth.permission",
         "pk": 62,
         "fields": {
-            "name": "Can change loop",
+            "name": "Can change conversation",
             "content_type": 16,
-            "codename": "change_loop"
+            "codename": "change_conversation"
         }
     },
     {
         "model": "auth.permission",
         "pk": 63,
         "fields": {
-            "name": "Can delete loop",
+            "name": "Can delete conversation",
             "content_type": 16,
-            "codename": "delete_loop"
+            "codename": "delete_conversation"
         }
     },
     {
         "model": "auth.permission",
         "pk": 64,
         "fields": {
-            "name": "Can view loop",
+            "name": "Can view conversation",
             "content_type": 16,
-            "codename": "view_loop"
+            "codename": "view_conversation"
         }
     },
     {
         "model": "auth.permission",
         "pk": 65,
         "fields": {
-            "name": "Can add loop detail",
+            "name": "Can add loop",
             "content_type": 17,
-            "codename": "add_loopdetail"
+            "codename": "add_loop"
         }
     },
     {
         "model": "auth.permission",
         "pk": 66,
         "fields": {
-            "name": "Can change loop detail",
+            "name": "Can change loop",
             "content_type": 17,
-            "codename": "change_loopdetail"
+            "codename": "change_loop"
         }
     },
     {
         "model": "auth.permission",
         "pk": 67,
         "fields": {
-            "name": "Can delete loop detail",
+            "name": "Can delete loop",
             "content_type": 17,
-            "codename": "delete_loopdetail"
+            "codename": "delete_loop"
         }
     },
     {
         "model": "auth.permission",
         "pk": 68,
         "fields": {
-            "name": "Can view loop detail",
+            "name": "Can view loop",
             "content_type": 17,
+            "codename": "view_loop"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 69,
+        "fields": {
+            "name": "Can add loop detail",
+            "content_type": 18,
+            "codename": "add_loopdetail"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 70,
+        "fields": {
+            "name": "Can change loop detail",
+            "content_type": 18,
+            "codename": "change_loopdetail"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 71,
+        "fields": {
+            "name": "Can delete loop detail",
+            "content_type": 18,
+            "codename": "delete_loopdetail"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 72,
+        "fields": {
+            "name": "Can view loop detail",
+            "content_type": 18,
             "codename": "view_loopdetail"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$DYBLV063kQ1d22HWkhrgSp$w1QS8KQ/C44xtD8jrE89TdWWwXiasfIjFHMCDyyy1iQ=",
+            "last_login": "2023-04-01T18:33:51.032Z",
+            "is_superuser": true,
+            "username": "nivra",
+            "first_name": "",
+            "last_name": "",
+            "email": "nivraleak@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-04-01T18:33:15.779Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -631,24 +685,24 @@
         "model": "contenttypes.contenttype",
         "pk": 3,
         "fields": {
-            "app_label": "contenttypes",
-            "model": "contenttype"
+            "app_label": "auth",
+            "model": "user"
         }
     },
     {
         "model": "contenttypes.contenttype",
         "pk": 4,
         "fields": {
-            "app_label": "sessions",
-            "model": "session"
+            "app_label": "contenttypes",
+            "model": "contenttype"
         }
     },
     {
         "model": "contenttypes.contenttype",
         "pk": 5,
         "fields": {
-            "app_label": "auth_user",
-            "model": "user"
+            "app_label": "sessions",
+            "model": "session"
         }
     },
     {
@@ -735,34 +789,24 @@
         "model": "contenttypes.contenttype",
         "pk": 16,
         "fields": {
-            "app_label": "loop",
-            "model": "loop"
+            "app_label": "adventures",
+            "model": "conversation"
         }
     },
     {
         "model": "contenttypes.contenttype",
         "pk": 17,
         "fields": {
-            "app_label": "loop_detail",
-            "model": "loopdetail"
+            "app_label": "loop",
+            "model": "loop"
         }
     },
     {
-        "model": "auth_user.user",
-        "pk": 1,
+        "model": "contenttypes.contenttype",
+        "pk": 18,
         "fields": {
-            "password": "123456",
-            "last_login": null,
-            "is_superuser": false,
-            "first_name": "",
-            "last_name": "",
-            "email": "",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2023-03-23T22:59:46.925Z",
-            "username": "SirPlayer",
-            "groups": [],
-            "user_permissions": []
+            "app_label": "loop_detail",
+            "model": "loopdetail"
         }
     },
     {
@@ -825,7 +869,7 @@
         "model": "equipments.equipment",
         "pk": 1,
         "fields": {
-            "quantity": 2,
+            "quantity": 5,
             "character": 1,
             "item": 1
         }
@@ -834,8 +878,8 @@
         "model": "equipments.equipment",
         "pk": 2,
         "fields": {
-            "quantity": 4,
-            "character": 1,
+            "quantity": 2,
+            "character": 2,
             "item": 2
         }
     },
@@ -843,8 +887,8 @@
         "model": "equipments.equipment",
         "pk": 3,
         "fields": {
-            "quantity": 1,
-            "character": 1,
+            "quantity": 4,
+            "character": 3,
             "item": 3
         }
     },
@@ -853,7 +897,7 @@
         "pk": 4,
         "fields": {
             "quantity": 1,
-            "character": 1,
+            "character": 4,
             "item": 4
         }
     },
@@ -862,7 +906,7 @@
         "pk": 1,
         "fields": {
             "characterName": "God of Sun",
-            "statisctic": null,
+            "statisctic": 1,
             "user": 1
         }
     },
@@ -871,7 +915,7 @@
         "pk": 2,
         "fields": {
             "characterName": "God of Death",
-            "statisctic": null,
+            "statisctic": 2,
             "user": 1
         }
     },
@@ -880,7 +924,7 @@
         "pk": 3,
         "fields": {
             "characterName": "God of Moon",
-            "statisctic": null,
+            "statisctic": 3,
             "user": 1
         }
     },
@@ -889,7 +933,7 @@
         "pk": 4,
         "fields": {
             "characterName": "God of Earth",
-            "statisctic": null,
+            "statisctic": 4,
             "user": 1
         }
     },
@@ -958,7 +1002,7 @@
         "pk": 2,
         "fields": {
             "name": "Death Mask",
-            "itemType": "CONSUMIBLE"
+            "itemType": "ARMA"
         }
     },
     {
@@ -966,7 +1010,7 @@
         "pk": 3,
         "fields": {
             "name": "Cursed Jewel",
-            "itemType": "CONSUMIBLE"
+            "itemType": "ARMA"
         }
     },
     {
@@ -975,42 +1019,6 @@
         "fields": {
             "name": "Bow",
             "itemType": "CONSUMIBLE"
-        }
-    },
-    {
-        "model": "character_detail.characterdetail",
-        "pk": 1,
-        "fields": {
-            "character": 1,
-            "profession": 1,
-            "ethnicity": 1
-        }
-    },
-    {
-        "model": "character_detail.characterdetail",
-        "pk": 2,
-        "fields": {
-            "character": 2,
-            "profession": 2,
-            "ethnicity": 2
-        }
-    },
-    {
-        "model": "character_detail.characterdetail",
-        "pk": 3,
-        "fields": {
-            "character": 3,
-            "profession": 3,
-            "ethnicity": 3
-        }
-    },
-    {
-        "model": "character_detail.characterdetail",
-        "pk": 4,
-        "fields": {
-            "character": 4,
-            "profession": 4,
-            "ethnicity": 4
         }
     }
 ]

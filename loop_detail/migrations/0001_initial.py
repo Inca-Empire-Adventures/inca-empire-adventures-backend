@@ -2,7 +2,10 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
+from django.core.management import call_command
 
+def forwards_func(apps, schema_editor):
+    call_command('loaddata', 'meta_data_migrations/meta_data__001.json', verbosity=3)
 
 class Migration(migrations.Migration):
 
@@ -22,4 +25,5 @@ class Migration(migrations.Migration):
                 ('loop', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='loop.loop')),
             ],
         ),
+        migrations.RunPython(forwards_func, None, elidable=False)
     ]
