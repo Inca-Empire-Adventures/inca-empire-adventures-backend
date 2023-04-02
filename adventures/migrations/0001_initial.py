@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             name='Conversation',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('role', models.CharField(choices=[('SYSTEM', 'system'), ('ASSISTANT', 'assistant')], max_length=50)),
+                ('role', models.CharField(choices=[('SYSTEM', 'system'), ('ASSISTANT', 'assistant'), ('USER', 'user')], max_length=50)),
                 ('content', models.TextField()),
                 ('adventure', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='adventures.adventures')),
             ],

@@ -1,22 +1,33 @@
-from rest_framework import viewsets
-from adventures.enums import RoleType
+from inca_empire_adventures_backend.constants import ID_USER_CHARACTER, USER_SESION
 from adventures.models import Adventures, Conversation
-from rest_framework import status
 from adventures.serializers import AdventureSerializer
 from rest_framework.response import Response
+from characters.models import Character
+from adventures.enums import RoleType
+from rest_framework import viewsets
+from rest_framework import status
+from django.db.models import Q
+
+
 import openai
 import os
-from characters.models import Character
 
-from inca_empire_adventures_backend.constants import ID_USER_CHARACTER, USER_SESION
-
-# Create your views here.
 class AdventureViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows adventures to be viewed or edited.
-    """
     queryset = Adventures.objects.all().order_by('id')
     serializer_class = AdventureSerializer
+
+    def get_queryset(self):
+        #user = self.request.user
+        # Obtener todos los character_detail que pertenecen al usuario
+        #queryset = Adventures.objects.filter(character__user=user)
+        queryset = Adventures.objects.all()
+
+        # Filtro opcional para buscar por nombre de character
+        character_name = self.request.query_params.get('character_name')
+        
+        if character_name:
+            queryset = queryset.filter(Q(character__user=user) & Q(character__characterName=character_name))
+        return queryset
 
     def create(self, request, *args, **kwargs):
         API_KEY = os.environ.get("API_KEY")
@@ -30,12 +41,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
         if adventure: 
             conversations = Conversation.objects.filter(adventure=adventure)
-
-            messages = [
-                {'role': 'system', 'content': 'Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?'}, 
-                {'role': 'assistant', 'content': 'Bueno mi nombre es SirPlayer y me encuentro en la epoca del Imperio incaico, Estoy en ayacucho, en la puna del Imperio incaico.'}, 
-                {'role': 'assistant', 'content': 'Entrar en la cueva'}, 
-                {'role': 'system', 'content': 'Perfecto, SirPlayer. Te encuentras en Ayacucho, una región de la puna del Imperio Incaico, rodeado por altas montañas y extensos campos verdes. Eres un guerrero Inca entrenado en el arte de la guerra y la caza, y has sido enviado en una misión especial por el emperador para investigar los rumores de una tribu hostil que ha estado atacando a las aldeas cercanas.Mientras te adentras en las montañas, escuchas un ruido extraño que viene de detrás de una roca grande. ¿Qué haces?'}]
+            messages = []
 
             for message in conversations:
                 messages.append({
@@ -43,10 +49,14 @@ class AdventureViewSet(viewsets.ModelViewSet):
                     "content": message.content
                 })
 
-            print("--------------------------:", adventure)
-            print("--------------------------")
-            print("--------------------------: ", messages)
-            print("--------------------------")
+            serializer = self.get_serializer(data=request.data)
+            if serializer.is_valid():
+                description = request.data["description"]
+
+            messages.append({
+                "role": RoleType.USER,
+                "content":  description
+            })
 
             # Iniciar la conversación simulada con el modelo GPT-3.5-turbo
             openai.api_key = API_KEY # Coloca aquí tu propia API key
@@ -72,15 +82,11 @@ class AdventureViewSet(viewsets.ModelViewSet):
                 "options": options
             }
 
-            serializer = self.get_serializer(data=request.data)
-            if serializer.is_valid():
-                description = request.data["description"]
-
-            assistant_conversation = Conversation(adventure=adventure, role=RoleType.ASSISTANT, content=description )
-            assistant_conversation.save()
+            user_conversation = Conversation(adventure=adventure, role=RoleType.USER, content=description )
+            user_conversation.save()
             
-            system_conversation = Conversation(adventure=adventure, role=RoleType.SYSTEM, content=continuation_conversation )
-            system_conversation.save()
+            assistant_conversation = Conversation(adventure=adventure, role=RoleType.ASSISTANT, content=continuation_conversation )
+            assistant_conversation.save()
 
             #headers = self.get_success_headers(response.choices[0])
             
@@ -105,8 +111,8 @@ class AdventureViewSet(viewsets.ModelViewSet):
             # Obtener la respuesta del modelo y crear el objeto Adventure
             continuation_conversation = response.choices[0].message.content.replace("\n","");
 
-            system_conversation = Conversation(adventure=new_adventure, role=RoleType.SYSTEM, content=continuation_conversation)
-            system_conversation.save()
+            assistant_conversation = Conversation(adventure=new_adventure, role=RoleType.ASSISTANT, content=continuation_conversation)
+            assistant_conversation.save()
             
             # Obtener lista de opciones
             options = self.obtener_opciones(continuation_conversation); 
@@ -134,20 +140,19 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
         return list(filter(bool, options))
 
-
     def create_conversations(self, request, character):
         # Obtener el mensaje inicial de la conversación
-        prompt_system = "Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?"
+        prompt_system = "Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?'"
 
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             description = request.data["description"]
 
         #TODO obtener el nombre del jugador - Validar si es el inicio de la historia
-        prompt_user = f"Bueno mi nombre es {USER_SESION} y me encuentro en la epoca del Imperio incaico, {description}"
+        prompt_user = f"Mi nombre es {USER_SESION} y me encuentro en la epoca del Imperio incaico, {description}"
         messages = [
             {"role": "system", "content": prompt_system}, 
-            {"role":"assistant", "content": prompt_user}
+            {"role":"user", "content": prompt_user}
         ]
 
         new_adventure = Adventures(description=prompt_user, character=character)
