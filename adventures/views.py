@@ -49,6 +49,15 @@ class AdventureViewSet(viewsets.ModelViewSet):
                     "content": message.content
                 })
 
+            serializer = self.get_serializer(data=request.data)
+            if serializer.is_valid():
+                description = request.data["description"]
+
+            messages.append({
+                "role": RoleType.USER,
+                "content":  description
+            })
+
             # Iniciar la conversación simulada con el modelo GPT-3.5-turbo
             openai.api_key = API_KEY # Coloca aquí tu propia API key
             response = openai.ChatCompletion.create(
@@ -73,15 +82,11 @@ class AdventureViewSet(viewsets.ModelViewSet):
                 "options": options
             }
 
-            serializer = self.get_serializer(data=request.data)
-            if serializer.is_valid():
-                description = request.data["description"]
-
-            assistant_conversation = Conversation(adventure=adventure, role=RoleType.ASSISTANT, content=description )
-            assistant_conversation.save()
+            user_conversation = Conversation(adventure=adventure, role=RoleType.USER, content=description )
+            user_conversation.save()
             
-            system_conversation = Conversation(adventure=adventure, role=RoleType.SYSTEM, content=continuation_conversation )
-            system_conversation.save()
+            assistant_conversation = Conversation(adventure=adventure, role=RoleType.ASSISTANT, content=continuation_conversation )
+            assistant_conversation.save()
 
             #headers = self.get_success_headers(response.choices[0])
             
@@ -106,8 +111,8 @@ class AdventureViewSet(viewsets.ModelViewSet):
             # Obtener la respuesta del modelo y crear el objeto Adventure
             continuation_conversation = response.choices[0].message.content.replace("\n","");
 
-            system_conversation = Conversation(adventure=new_adventure, role=RoleType.SYSTEM, content=continuation_conversation)
-            system_conversation.save()
+            assistant_conversation = Conversation(adventure=new_adventure, role=RoleType.ASSISTANT, content=continuation_conversation)
+            assistant_conversation.save()
             
             # Obtener lista de opciones
             options = self.obtener_opciones(continuation_conversation); 
@@ -137,17 +142,17 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
     def create_conversations(self, request, character):
         # Obtener el mensaje inicial de la conversación
-        prompt_system = "Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?"
+        prompt_system = "Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?'"
 
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             description = request.data["description"]
 
         #TODO obtener el nombre del jugador - Validar si es el inicio de la historia
-        prompt_user = f"Bueno mi nombre es {USER_SESION} y me encuentro en la epoca del Imperio incaico, {description}"
+        prompt_user = f"Mi nombre es {USER_SESION} y me encuentro en la epoca del Imperio incaico, {description}"
         messages = [
             {"role": "system", "content": prompt_system}, 
-            {"role":"assistant", "content": prompt_user}
+            {"role":"user", "content": prompt_user}
         ]
 
         new_adventure = Adventures(description=prompt_user, character=character)
