@@ -33,7 +33,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
         API_KEY = os.environ.get("API_KEY")
         
         character = Character.objects.get(pk=ID_USER_CHARACTER)
-
+        description = ''
         try:
             adventure = Adventures.objects.get(character=character)
         except Exception as e:
