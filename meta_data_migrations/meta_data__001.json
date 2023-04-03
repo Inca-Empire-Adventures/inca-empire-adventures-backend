@@ -862,7 +862,7 @@
         "pk": 1,
         "fields": {
             "characterName": "God of Sun",
-            "statisctic": null,
+            "statistic": null,
             "user": 1
         }
     },
@@ -871,7 +871,7 @@
         "pk": 2,
         "fields": {
             "characterName": "God of Death",
-            "statisctic": null,
+            "statistic": null,
             "user": 1
         }
     },
@@ -880,7 +880,7 @@
         "pk": 3,
         "fields": {
             "characterName": "God of Moon",
-            "statisctic": null,
+            "statistic": null,
             "user": 1
         }
     },
@@ -889,7 +889,7 @@
         "pk": 4,
         "fields": {
             "characterName": "God of Earth",
-            "statisctic": null,
+            "statistic": null,
             "user": 1
         }
     },

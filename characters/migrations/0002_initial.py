@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='character',
-            name='statisctic',
+            name='statistic',
             field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, to='statistics_user.statisticsuser'),
         ),
         migrations.AddField(
