@@ -1,5 +1,6 @@
 from django.db import models
-from ethnicity.models import Ethnicity
+from statistics_user.enums import EthnicityType
+
 # Create your models here.
 class StatisticsUser(models.Model):
     strength = models.IntegerField();
@@ -8,4 +9,7 @@ class StatisticsUser(models.Model):
     charisma = models.IntegerField();
     wisdom = models.IntegerField();
     constitucion = models.IntegerField();
-    ethnicity = models.ForeignKey(Ethnicity, on_delete=models.SET_NULL, null=True, blank=True)
+    ethnicityType = models.CharField(choices=EthnicityType.choices, max_length=50)
+
+    def __str__(self):
+        return self.ethnicityType

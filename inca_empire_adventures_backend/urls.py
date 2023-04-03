@@ -10,7 +10,6 @@ from item.views import ItemViewSet
 from loop.views import LoopViewSet
 from loop_detail.views import LoopDetailViewSet
 from professions.views import ProfessionsViewSet
-from ethnicity.views import EthnicityViewSet
 from skills.views import SkillsViewSet
 from statistics_user.views import StatisticsUserViewSet 
 from rest_framework_simplejwt.views import (
@@ -21,7 +20,6 @@ from rest_framework_simplejwt.views import (
 router = routers.DefaultRouter()
 router.register(r'characters', CharacterViewSet, basename='character')
 router.register(r'professions', ProfessionsViewSet)
-router.register(r'ethnicity', EthnicityViewSet)
 router.register(r'equipments', EquipmentViewSet, basename='equipment')
 router.register(r'statistics', StatisticsUserViewSet)
 router.register(r'item', ItemViewSet)
