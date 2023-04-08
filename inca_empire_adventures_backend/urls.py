@@ -35,8 +35,6 @@ router.register(r'loop_detail', LoopDetailViewSet)
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('', include(router.urls)),
-
     # URL para registrar nuevos usuarios
     path('api/register/', RegisterUserView.as_view(), name='register_user'),
     
@@ -47,5 +45,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    path('', include(router.urls)),
 
 ]
