@@ -790,7 +790,7 @@
         "pk": 1,
         "fields": {
             "characterName": "sirPlayer01",
-            "statisctic": 1,
+            "statistic": 1,
             "user": 1
         }
     },

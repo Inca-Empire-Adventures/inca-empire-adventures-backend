@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('characterName', models.CharField(max_length=25)),
-                ('statisctic', models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, to='statistics_user.statisticsuser')),
+                ('statistic', models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, to='statistics_user.statisticsuser')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='characters', to=settings.AUTH_USER_MODEL)),
             ],
         ),

@@ -1,1 +1,897 @@
-[{"model": "auth.permission", "pk": 1, "fields": {"name": "Can add permission", "content_type": 1, "codename": "add_permission"}}, {"model": "auth.permission", "pk": 2, "fields": {"name": "Can change permission", "content_type": 1, "codename": "change_permission"}}, {"model": "auth.permission", "pk": 3, "fields": {"name": "Can delete permission", "content_type": 1, "codename": "delete_permission"}}, {"model": "auth.permission", "pk": 4, "fields": {"name": "Can view permission", "content_type": 1, "codename": "view_permission"}}, {"model": "auth.permission", "pk": 5, "fields": {"name": "Can add group", "content_type": 2, "codename": "add_group"}}, {"model": "auth.permission", "pk": 6, "fields": {"name": "Can change group", "content_type": 2, "codename": "change_group"}}, {"model": "auth.permission", "pk": 7, "fields": {"name": "Can delete group", "content_type": 2, "codename": "delete_group"}}, {"model": "auth.permission", "pk": 8, "fields": {"name": "Can view group", "content_type": 2, "codename": "view_group"}}, {"model": "auth.permission", "pk": 9, "fields": {"name": "Can add user", "content_type": 3, "codename": "add_user"}}, {"model": "auth.permission", "pk": 10, "fields": {"name": "Can change user", "content_type": 3, "codename": "change_user"}}, {"model": "auth.permission", "pk": 11, "fields": {"name": "Can delete user", "content_type": 3, "codename": "delete_user"}}, {"model": "auth.permission", "pk": 12, "fields": {"name": "Can view user", "content_type": 3, "codename": "view_user"}}, {"model": "auth.permission", "pk": 13, "fields": {"name": "Can add content type", "content_type": 4, "codename": "add_contenttype"}}, {"model": "auth.permission", "pk": 14, "fields": {"name": "Can change content type", "content_type": 4, "codename": "change_contenttype"}}, {"model": "auth.permission", "pk": 15, "fields": {"name": "Can delete content type", "content_type": 4, "codename": "delete_contenttype"}}, {"model": "auth.permission", "pk": 16, "fields": {"name": "Can view content type", "content_type": 4, "codename": "view_contenttype"}}, {"model": "auth.permission", "pk": 17, "fields": {"name": "Can add session", "content_type": 5, "codename": "add_session"}}, {"model": "auth.permission", "pk": 18, "fields": {"name": "Can change session", "content_type": 5, "codename": "change_session"}}, {"model": "auth.permission", "pk": 19, "fields": {"name": "Can delete session", "content_type": 5, "codename": "delete_session"}}, {"model": "auth.permission", "pk": 20, "fields": {"name": "Can view session", "content_type": 5, "codename": "view_session"}}, {"model": "auth.permission", "pk": 21, "fields": {"name": "Can add profession", "content_type": 6, "codename": "add_profession"}}, {"model": "auth.permission", "pk": 22, "fields": {"name": "Can change profession", "content_type": 6, "codename": "change_profession"}}, {"model": "auth.permission", "pk": 23, "fields": {"name": "Can delete profession", "content_type": 6, "codename": "delete_profession"}}, {"model": "auth.permission", "pk": 24, "fields": {"name": "Can view profession", "content_type": 6, "codename": "view_profession"}}, {"model": "auth.permission", "pk": 25, "fields": {"name": "Can add equipment", "content_type": 7, "codename": "add_equipment"}}, {"model": "auth.permission", "pk": 26, "fields": {"name": "Can change equipment", "content_type": 7, "codename": "change_equipment"}}, {"model": "auth.permission", "pk": 27, "fields": {"name": "Can delete equipment", "content_type": 7, "codename": "delete_equipment"}}, {"model": "auth.permission", "pk": 28, "fields": {"name": "Can view equipment", "content_type": 7, "codename": "view_equipment"}}, {"model": "auth.permission", "pk": 29, "fields": {"name": "Can add character", "content_type": 8, "codename": "add_character"}}, {"model": "auth.permission", "pk": 30, "fields": {"name": "Can change character", "content_type": 8, "codename": "change_character"}}, {"model": "auth.permission", "pk": 31, "fields": {"name": "Can delete character", "content_type": 8, "codename": "delete_character"}}, {"model": "auth.permission", "pk": 32, "fields": {"name": "Can view character", "content_type": 8, "codename": "view_character"}}, {"model": "auth.permission", "pk": 33, "fields": {"name": "Can add statistics user", "content_type": 9, "codename": "add_statisticsuser"}}, {"model": "auth.permission", "pk": 34, "fields": {"name": "Can change statistics user", "content_type": 9, "codename": "change_statisticsuser"}}, {"model": "auth.permission", "pk": 35, "fields": {"name": "Can delete statistics user", "content_type": 9, "codename": "delete_statisticsuser"}}, {"model": "auth.permission", "pk": 36, "fields": {"name": "Can view statistics user", "content_type": 9, "codename": "view_statisticsuser"}}, {"model": "auth.permission", "pk": 37, "fields": {"name": "Can add item", "content_type": 10, "codename": "add_item"}}, {"model": "auth.permission", "pk": 38, "fields": {"name": "Can change item", "content_type": 10, "codename": "change_item"}}, {"model": "auth.permission", "pk": 39, "fields": {"name": "Can delete item", "content_type": 10, "codename": "delete_item"}}, {"model": "auth.permission", "pk": 40, "fields": {"name": "Can view item", "content_type": 10, "codename": "view_item"}}, {"model": "auth.permission", "pk": 41, "fields": {"name": "Can add character detail", "content_type": 11, "codename": "add_characterdetail"}}, {"model": "auth.permission", "pk": 42, "fields": {"name": "Can change character detail", "content_type": 11, "codename": "change_characterdetail"}}, {"model": "auth.permission", "pk": 43, "fields": {"name": "Can delete character detail", "content_type": 11, "codename": "delete_characterdetail"}}, {"model": "auth.permission", "pk": 44, "fields": {"name": "Can view character detail", "content_type": 11, "codename": "view_characterdetail"}}, {"model": "auth.permission", "pk": 45, "fields": {"name": "Can add skills", "content_type": 12, "codename": "add_skills"}}, {"model": "auth.permission", "pk": 46, "fields": {"name": "Can change skills", "content_type": 12, "codename": "change_skills"}}, {"model": "auth.permission", "pk": 47, "fields": {"name": "Can delete skills", "content_type": 12, "codename": "delete_skills"}}, {"model": "auth.permission", "pk": 48, "fields": {"name": "Can view skills", "content_type": 12, "codename": "view_skills"}}, {"model": "auth.permission", "pk": 49, "fields": {"name": "Can add adventures", "content_type": 13, "codename": "add_adventures"}}, {"model": "auth.permission", "pk": 50, "fields": {"name": "Can change adventures", "content_type": 13, "codename": "change_adventures"}}, {"model": "auth.permission", "pk": 51, "fields": {"name": "Can delete adventures", "content_type": 13, "codename": "delete_adventures"}}, {"model": "auth.permission", "pk": 52, "fields": {"name": "Can view adventures", "content_type": 13, "codename": "view_adventures"}}, {"model": "auth.permission", "pk": 53, "fields": {"name": "Can add conversation", "content_type": 14, "codename": "add_conversation"}}, {"model": "auth.permission", "pk": 54, "fields": {"name": "Can change conversation", "content_type": 14, "codename": "change_conversation"}}, {"model": "auth.permission", "pk": 55, "fields": {"name": "Can delete conversation", "content_type": 14, "codename": "delete_conversation"}}, {"model": "auth.permission", "pk": 56, "fields": {"name": "Can view conversation", "content_type": 14, "codename": "view_conversation"}}, {"model": "auth.permission", "pk": 57, "fields": {"name": "Can add loop", "content_type": 15, "codename": "add_loop"}}, {"model": "auth.permission", "pk": 58, "fields": {"name": "Can change loop", "content_type": 15, "codename": "change_loop"}}, {"model": "auth.permission", "pk": 59, "fields": {"name": "Can delete loop", "content_type": 15, "codename": "delete_loop"}}, {"model": "auth.permission", "pk": 60, "fields": {"name": "Can view loop", "content_type": 15, "codename": "view_loop"}}, {"model": "auth.permission", "pk": 61, "fields": {"name": "Can add loop detail", "content_type": 16, "codename": "add_loopdetail"}}, {"model": "auth.permission", "pk": 62, "fields": {"name": "Can change loop detail", "content_type": 16, "codename": "change_loopdetail"}}, {"model": "auth.permission", "pk": 63, "fields": {"name": "Can delete loop detail", "content_type": 16, "codename": "delete_loopdetail"}}, {"model": "auth.permission", "pk": 64, "fields": {"name": "Can view loop detail", "content_type": 16, "codename": "view_loopdetail"}}, {"model": "auth.user", "pk": 1, "fields": {"password": "pbkdf2_sha256$390000$KuPutgWS8gTzO5a2wxEOMz$0Yy9n3FHR9bME8Y1Rj38leqFd5IAUgZ3LW433Xpwv58=", "last_login": "2023-04-03T04:38:33.738Z", "is_superuser": true, "username": "nivra", "first_name": "", "last_name": "", "email": "nivra@gmail.com", "is_staff": true, "is_active": true, "date_joined": "2023-04-03T04:38:26.700Z", "groups": [], "user_permissions": []}}, {"model": "contenttypes.contenttype", "pk": 1, "fields": {"app_label": "auth", "model": "permission"}}, {"model": "contenttypes.contenttype", "pk": 2, "fields": {"app_label": "auth", "model": "group"}}, {"model": "contenttypes.contenttype", "pk": 3, "fields": {"app_label": "auth", "model": "user"}}, {"model": "contenttypes.contenttype", "pk": 4, "fields": {"app_label": "contenttypes", "model": "contenttype"}}, {"model": "contenttypes.contenttype", "pk": 5, "fields": {"app_label": "sessions", "model": "session"}}, {"model": "contenttypes.contenttype", "pk": 6, "fields": {"app_label": "professions", "model": "profession"}}, {"model": "contenttypes.contenttype", "pk": 7, "fields": {"app_label": "equipments", "model": "equipment"}}, {"model": "contenttypes.contenttype", "pk": 8, "fields": {"app_label": "characters", "model": "character"}}, {"model": "contenttypes.contenttype", "pk": 9, "fields": {"app_label": "statistics_user", "model": "statisticsuser"}}, {"model": "contenttypes.contenttype", "pk": 10, "fields": {"app_label": "item", "model": "item"}}, {"model": "contenttypes.contenttype", "pk": 11, "fields": {"app_label": "character_detail", "model": "characterdetail"}}, {"model": "contenttypes.contenttype", "pk": 12, "fields": {"app_label": "skills", "model": "skills"}}, {"model": "contenttypes.contenttype", "pk": 13, "fields": {"app_label": "adventures", "model": "adventures"}}, {"model": "contenttypes.contenttype", "pk": 14, "fields": {"app_label": "adventures", "model": "conversation"}}, {"model": "contenttypes.contenttype", "pk": 15, "fields": {"app_label": "loop", "model": "loop"}}, {"model": "contenttypes.contenttype", "pk": 16, "fields": {"app_label": "loop_detail", "model": "loopdetail"}}, {"model": "sessions.session", "pk": "jak5cw66ivc368irikpbh6xnyxei0agm", "fields": {"session_data": ".eJxVjEEOwiAQRe_C2hBGCAWX7j0DGWYGqRqalHbVeHdt0oVu_3vvbyrhutS0dpnTyOqiQJ1-t4z0lLYDfmC7T5qmtsxj1ruiD9r1bWJ5XQ_376Bir9_alcH4CMZbEyzEM1hjS2Biip7ZZZKYLUeCaAujMHlXvAQwQQDz4NT7A8zCOAg:1pjBxh:IoWlgVuk1yzl6jCnove0MHtTXljzpbrKhIWu3mUwi4o", "expire_date": "2023-04-17T04:38:33.755Z"}}, {"model": "professions.profession", "pk": 1, "fields": {"name": "Fighter"}}, {"model": "professions.profession", "pk": 2, "fields": {"name": "Rogue"}}, {"model": "professions.profession", "pk": 3, "fields": {"name": "Cleric"}}, {"model": "professions.profession", "pk": 4, "fields": {"name": "Wizard"}}, {"model": "equipments.equipment", "pk": 1, "fields": {"quantity": 5, "character": 1, "item": 1}}, {"model": "equipments.equipment", "pk": 2, "fields": {"quantity": 2, "character": 1, "item": 2}}, {"model": "equipments.equipment", "pk": 3, "fields": {"quantity": 1, "character": 1, "item": 3}}, {"model": "equipments.equipment", "pk": 4, "fields": {"quantity": 1, "character": 1, "item": 4}}, {"model": "characters.character", "pk": 1, "fields": {"characterName": "sirPlayer01", "statisctic": 1, "user": 1}}, {"model": "statistics_user.statisticsuser", "pk": 1, "fields": {"strength": 2, "intelligence": 0, "dexterity": 1, "charisma": 0, "wisdom": 0, "constitucion": 0, "ethnicityType": "GOD_OF_SUN"}}, {"model": "statistics_user.statisticsuser", "pk": 2, "fields": {"strength": 0, "intelligence": 1, "dexterity": 2, "charisma": 0, "wisdom": 0, "constitucion": 0, "ethnicityType": "GOD_OF_DEATH"}}, {"model": "statistics_user.statisticsuser", "pk": 3, "fields": {"strength": 1, "intelligence": 1, "dexterity": 1, "charisma": 1, "wisdom": 1, "constitucion": 1, "ethnicityType": "GOD_OF_MOON"}}, {"model": "statistics_user.statisticsuser", "pk": 4, "fields": {"strength": 0, "intelligence": 2, "dexterity": 1, "charisma": 0, "wisdom": 0, "constitucion": 0, "ethnicityType": "GOD_OF_EARTH"}}, {"model": "item.item", "pk": 1, "fields": {"name": "Fire Cloak", "itemType": "CONSUMIBLE"}}, {"model": "item.item", "pk": 2, "fields": {"name": "Death Mask", "itemType": "ARMA"}}, {"model": "item.item", "pk": 3, "fields": {"name": "Cursed Jewel", "itemType": "ARMA"}}, {"model": "item.item", "pk": 4, "fields": {"name": "Bow", "itemType": "CONSUMIBLE"}}, {"model": "character_detail.characterdetail", "pk": 1, "fields": {"character": 1, "profession": 1}}]
+[
+    {
+        "model": "auth.permission",
+        "pk": 1,
+        "fields": {
+            "name": "Can add permission",
+            "content_type": 1,
+            "codename": "add_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 2,
+        "fields": {
+            "name": "Can change permission",
+            "content_type": 1,
+            "codename": "change_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 3,
+        "fields": {
+            "name": "Can delete permission",
+            "content_type": 1,
+            "codename": "delete_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 4,
+        "fields": {
+            "name": "Can view permission",
+            "content_type": 1,
+            "codename": "view_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 5,
+        "fields": {
+            "name": "Can add group",
+            "content_type": 2,
+            "codename": "add_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 6,
+        "fields": {
+            "name": "Can change group",
+            "content_type": 2,
+            "codename": "change_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 7,
+        "fields": {
+            "name": "Can delete group",
+            "content_type": 2,
+            "codename": "delete_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 8,
+        "fields": {
+            "name": "Can view group",
+            "content_type": 2,
+            "codename": "view_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 9,
+        "fields": {
+            "name": "Can add user",
+            "content_type": 3,
+            "codename": "add_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 10,
+        "fields": {
+            "name": "Can change user",
+            "content_type": 3,
+            "codename": "change_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 11,
+        "fields": {
+            "name": "Can delete user",
+            "content_type": 3,
+            "codename": "delete_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 12,
+        "fields": {
+            "name": "Can view user",
+            "content_type": 3,
+            "codename": "view_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 13,
+        "fields": {
+            "name": "Can add content type",
+            "content_type": 4,
+            "codename": "add_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 14,
+        "fields": {
+            "name": "Can change content type",
+            "content_type": 4,
+            "codename": "change_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 15,
+        "fields": {
+            "name": "Can delete content type",
+            "content_type": 4,
+            "codename": "delete_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 16,
+        "fields": {
+            "name": "Can view content type",
+            "content_type": 4,
+            "codename": "view_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 17,
+        "fields": {
+            "name": "Can add session",
+            "content_type": 5,
+            "codename": "add_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 18,
+        "fields": {
+            "name": "Can change session",
+            "content_type": 5,
+            "codename": "change_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 19,
+        "fields": {
+            "name": "Can delete session",
+            "content_type": 5,
+            "codename": "delete_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 20,
+        "fields": {
+            "name": "Can view session",
+            "content_type": 5,
+            "codename": "view_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 21,
+        "fields": {
+            "name": "Can add profession",
+            "content_type": 6,
+            "codename": "add_profession"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 22,
+        "fields": {
+            "name": "Can change profession",
+            "content_type": 6,
+            "codename": "change_profession"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 23,
+        "fields": {
+            "name": "Can delete profession",
+            "content_type": 6,
+            "codename": "delete_profession"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 24,
+        "fields": {
+            "name": "Can view profession",
+            "content_type": 6,
+            "codename": "view_profession"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 25,
+        "fields": {
+            "name": "Can add equipment",
+            "content_type": 7,
+            "codename": "add_equipment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 26,
+        "fields": {
+            "name": "Can change equipment",
+            "content_type": 7,
+            "codename": "change_equipment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 27,
+        "fields": {
+            "name": "Can delete equipment",
+            "content_type": 7,
+            "codename": "delete_equipment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 28,
+        "fields": {
+            "name": "Can view equipment",
+            "content_type": 7,
+            "codename": "view_equipment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 29,
+        "fields": {
+            "name": "Can add character",
+            "content_type": 8,
+            "codename": "add_character"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 30,
+        "fields": {
+            "name": "Can change character",
+            "content_type": 8,
+            "codename": "change_character"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 31,
+        "fields": {
+            "name": "Can delete character",
+            "content_type": 8,
+            "codename": "delete_character"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 32,
+        "fields": {
+            "name": "Can view character",
+            "content_type": 8,
+            "codename": "view_character"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 33,
+        "fields": {
+            "name": "Can add statistics user",
+            "content_type": 9,
+            "codename": "add_statisticsuser"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 34,
+        "fields": {
+            "name": "Can change statistics user",
+            "content_type": 9,
+            "codename": "change_statisticsuser"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 35,
+        "fields": {
+            "name": "Can delete statistics user",
+            "content_type": 9,
+            "codename": "delete_statisticsuser"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 36,
+        "fields": {
+            "name": "Can view statistics user",
+            "content_type": 9,
+            "codename": "view_statisticsuser"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 37,
+        "fields": {
+            "name": "Can add item",
+            "content_type": 10,
+            "codename": "add_item"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 38,
+        "fields": {
+            "name": "Can change item",
+            "content_type": 10,
+            "codename": "change_item"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 39,
+        "fields": {
+            "name": "Can delete item",
+            "content_type": 10,
+            "codename": "delete_item"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 40,
+        "fields": {
+            "name": "Can view item",
+            "content_type": 10,
+            "codename": "view_item"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 41,
+        "fields": {
+            "name": "Can add character detail",
+            "content_type": 11,
+            "codename": "add_characterdetail"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 42,
+        "fields": {
+            "name": "Can change character detail",
+            "content_type": 11,
+            "codename": "change_characterdetail"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 43,
+        "fields": {
+            "name": "Can delete character detail",
+            "content_type": 11,
+            "codename": "delete_characterdetail"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 44,
+        "fields": {
+            "name": "Can view character detail",
+            "content_type": 11,
+            "codename": "view_characterdetail"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 45,
+        "fields": {
+            "name": "Can add skills",
+            "content_type": 12,
+            "codename": "add_skills"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 46,
+        "fields": {
+            "name": "Can change skills",
+            "content_type": 12,
+            "codename": "change_skills"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 47,
+        "fields": {
+            "name": "Can delete skills",
+            "content_type": 12,
+            "codename": "delete_skills"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 48,
+        "fields": {
+            "name": "Can view skills",
+            "content_type": 12,
+            "codename": "view_skills"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 49,
+        "fields": {
+            "name": "Can add adventures",
+            "content_type": 13,
+            "codename": "add_adventures"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 50,
+        "fields": {
+            "name": "Can change adventures",
+            "content_type": 13,
+            "codename": "change_adventures"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 51,
+        "fields": {
+            "name": "Can delete adventures",
+            "content_type": 13,
+            "codename": "delete_adventures"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 52,
+        "fields": {
+            "name": "Can view adventures",
+            "content_type": 13,
+            "codename": "view_adventures"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 53,
+        "fields": {
+            "name": "Can add conversation",
+            "content_type": 14,
+            "codename": "add_conversation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 54,
+        "fields": {
+            "name": "Can change conversation",
+            "content_type": 14,
+            "codename": "change_conversation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 55,
+        "fields": {
+            "name": "Can delete conversation",
+            "content_type": 14,
+            "codename": "delete_conversation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 56,
+        "fields": {
+            "name": "Can view conversation",
+            "content_type": 14,
+            "codename": "view_conversation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 57,
+        "fields": {
+            "name": "Can add loop",
+            "content_type": 15,
+            "codename": "add_loop"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 58,
+        "fields": {
+            "name": "Can change loop",
+            "content_type": 15,
+            "codename": "change_loop"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 59,
+        "fields": {
+            "name": "Can delete loop",
+            "content_type": 15,
+            "codename": "delete_loop"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 60,
+        "fields": {
+            "name": "Can view loop",
+            "content_type": 15,
+            "codename": "view_loop"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 61,
+        "fields": {
+            "name": "Can add loop detail",
+            "content_type": 16,
+            "codename": "add_loopdetail"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 62,
+        "fields": {
+            "name": "Can change loop detail",
+            "content_type": 16,
+            "codename": "change_loopdetail"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 63,
+        "fields": {
+            "name": "Can delete loop detail",
+            "content_type": 16,
+            "codename": "delete_loopdetail"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 64,
+        "fields": {
+            "name": "Can view loop detail",
+            "content_type": 16,
+            "codename": "view_loopdetail"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$KuPutgWS8gTzO5a2wxEOMz$0Yy9n3FHR9bME8Y1Rj38leqFd5IAUgZ3LW433Xpwv58=",
+            "last_login": "2023-04-03T04:38:33.738Z",
+            "is_superuser": true,
+            "username": "nivra",
+            "first_name": "",
+            "last_name": "",
+            "email": "nivra@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-04-03T04:38:26.700Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 1,
+        "fields": {
+            "app_label": "auth",
+            "model": "permission"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 2,
+        "fields": {
+            "app_label": "auth",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 3,
+        "fields": {
+            "app_label": "auth",
+            "model": "user"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 4,
+        "fields": {
+            "app_label": "contenttypes",
+            "model": "contenttype"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 5,
+        "fields": {
+            "app_label": "sessions",
+            "model": "session"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 6,
+        "fields": {
+            "app_label": "professions",
+            "model": "profession"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 7,
+        "fields": {
+            "app_label": "equipments",
+            "model": "equipment"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 8,
+        "fields": {
+            "app_label": "characters",
+            "model": "character"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 9,
+        "fields": {
+            "app_label": "statistics_user",
+            "model": "statisticsuser"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 10,
+        "fields": {
+            "app_label": "item",
+            "model": "item"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 11,
+        "fields": {
+            "app_label": "character_detail",
+            "model": "characterdetail"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 12,
+        "fields": {
+            "app_label": "skills",
+            "model": "skills"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 13,
+        "fields": {
+            "app_label": "adventures",
+            "model": "adventures"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 14,
+        "fields": {
+            "app_label": "adventures",
+            "model": "conversation"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 15,
+        "fields": {
+            "app_label": "loop",
+            "model": "loop"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 16,
+        "fields": {
+            "app_label": "loop_detail",
+            "model": "loopdetail"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "jak5cw66ivc368irikpbh6xnyxei0agm",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2hBGCAWX7j0DGWYGqRqalHbVeHdt0oVu_3vvbyrhutS0dpnTyOqiQJ1-t4z0lLYDfmC7T5qmtsxj1ruiD9r1bWJ5XQ_376Bir9_alcH4CMZbEyzEM1hjS2Biip7ZZZKYLUeCaAujMHlXvAQwQQDz4NT7A8zCOAg:1pjBxh:IoWlgVuk1yzl6jCnove0MHtTXljzpbrKhIWu3mUwi4o",
+            "expire_date": "2023-04-17T04:38:33.755Z"
+        }
+    },
+    {
+        "model": "professions.profession",
+        "pk": 1,
+        "fields": {
+            "name": "Fighter"
+        }
+    },
+    {
+        "model": "professions.profession",
+        "pk": 2,
+        "fields": {
+            "name": "Rogue"
+        }
+    },
+    {
+        "model": "professions.profession",
+        "pk": 3,
+        "fields": {
+            "name": "Cleric"
+        }
+    },
+    {
+        "model": "professions.profession",
+        "pk": 4,
+        "fields": {
+            "name": "Wizard"
+        }
+    },
+    {
+        "model": "equipments.equipment",
+        "pk": 1,
+        "fields": {
+            "quantity": 5,
+            "character": 1,
+            "item": 1
+        }
+    },
+    {
+        "model": "equipments.equipment",
+        "pk": 2,
+        "fields": {
+            "quantity": 2,
+            "character": 1,
+            "item": 2
+        }
+    },
+    {
+        "model": "equipments.equipment",
+        "pk": 3,
+        "fields": {
+            "quantity": 1,
+            "character": 1,
+            "item": 3
+        }
+    },
+    {
+        "model": "equipments.equipment",
+        "pk": 4,
+        "fields": {
+            "quantity": 1,
+            "character": 1,
+            "item": 4
+        }
+    },
+    {
+        "model": "characters.character",
+        "pk": 1,
+        "fields": {
+            "characterName": "sirPlayer01",
+            "statistic": 1,
+            "user": 1
+        }
+    },
+    {
+        "model": "statistics_user.statisticsuser",
+        "pk": 1,
+        "fields": {
+            "strength": 2,
+            "intelligence": 0,
+            "dexterity": 1,
+            "charisma": 0,
+            "wisdom": 0,
+            "constitucion": 0,
+            "ethnicityType": "GOD_OF_SUN"
+        }
+    },
+    {
+        "model": "statistics_user.statisticsuser",
+        "pk": 2,
+        "fields": {
+            "strength": 0,
+            "intelligence": 1,
+            "dexterity": 2,
+            "charisma": 0,
+            "wisdom": 0,
+            "constitucion": 0,
+            "ethnicityType": "GOD_OF_DEATH"
+        }
+    },
+    {
+        "model": "statistics_user.statisticsuser",
+        "pk": 3,
+        "fields": {
+            "strength": 1,
+            "intelligence": 1,
+            "dexterity": 1,
+            "charisma": 1,
+            "wisdom": 1,
+            "constitucion": 1,
+            "ethnicityType": "GOD_OF_MOON"
+        }
+    },
+    {
+        "model": "statistics_user.statisticsuser",
+        "pk": 4,
+        "fields": {
+            "strength": 0,
+            "intelligence": 2,
+            "dexterity": 1,
+            "charisma": 0,
+            "wisdom": 0,
+            "constitucion": 0,
+            "ethnicityType": "GOD_OF_EARTH"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 1,
+        "fields": {
+            "name": "Fire Cloak",
+            "itemType": "CONSUMIBLE"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 2,
+        "fields": {
+            "name": "Death Mask",
+            "itemType": "ARMA"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 3,
+        "fields": {
+            "name": "Cursed Jewel",
+            "itemType": "ARMA"
+        }
+    },
+    {
+        "model": "item.item",
+        "pk": 4,
+        "fields": {
+            "name": "Bow",
+            "itemType": "CONSUMIBLE"
+        }
+    },
+    {
+        "model": "character_detail.characterdetail",
+        "pk": 1,
+        "fields": {
+            "character": 1,
+            "profession": 1
+        }
+    }
+]
