@@ -32,7 +32,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         API_KEY = os.environ.get("API_KEY")
         
-        character = Character.objects.get(pk=ID_USER_CHARACTER)
+        character = Character.objects.get(pk=request.data["character"])
 
         try:
             adventure = Adventures.objects.get(character=character)
@@ -149,7 +149,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
             description = request.data["description"]
 
         #TODO obtener el nombre del jugador - Validar si es el inicio de la historia
-        prompt_user = f"Mi nombre es {USER_SESION} y me encuentro en la epoca del Imperio incaico, {description}"
+        prompt_user = f"Mi nombre es {character.characterName} y me encuentro en la epoca del Imperio incaico, {description}"
         messages = [
             {"role": "system", "content": prompt_system}, 
             {"role":"user", "content": prompt_user}
