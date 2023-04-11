@@ -142,7 +142,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
     def create_conversations(self, request, character):
         # Obtener el mensaje inicial de la conversación
-        prompt_system = "Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?'"
+        prompt_system = "Eres mi dungeon master experimentado, aplicas reglas d20 y al finalizar una situacion o desafío escribes 'FIN DE LOOP' "
 
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
