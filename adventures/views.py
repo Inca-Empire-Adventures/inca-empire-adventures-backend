@@ -39,6 +39,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
         except Exception as e:
             adventure = None
 
+        # Si tengo una aventura iniciada
         if adventure: 
             conversations = Conversation.objects.filter(adventure=adventure)
             messages = []
@@ -92,6 +93,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
             
             return Response(structure_response, status=status.HTTP_201_CREATED)
 
+        #Si estoy iniciando una aventura
         elif adventure == None: 
             messages, new_adventure = self.create_conversations(request, character)
 
