@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from loop_detail.models import LoopDetail
 from loop_detail.serializers import LoopDetailSerializer
 
@@ -9,3 +9,4 @@ class LoopDetailViewSet(viewsets.ModelViewSet):
     """
     queryset = LoopDetail.objects.all().order_by('id')
     serializer_class = LoopDetailSerializer
+    permission_classes = [permissions.IsAuthenticated]

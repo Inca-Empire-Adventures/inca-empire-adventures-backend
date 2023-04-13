@@ -1,6 +1,6 @@
 from professions.models import Profession
 from professions.serializers import ProfessionSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 
 # Create your views here.
 class ProfessionsViewSet(viewsets.ModelViewSet):
@@ -9,3 +9,5 @@ class ProfessionsViewSet(viewsets.ModelViewSet):
     """
     queryset = Profession.objects.all().order_by('id')
     serializer_class = ProfessionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+

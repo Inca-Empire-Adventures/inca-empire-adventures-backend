@@ -1,12 +1,26 @@
-from rest_framework import viewsets
-from rest_framework import permissions
-from auth_user.models import User
-from auth_user.serializers import UserSerializer
+from rest_framework import generics, status
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import get_user_model
+from auth_user.serializer import UserSerializer
 
-# Create your views here.
-class UserViewSet(viewsets.ModelViewSet):
+class RegisterUserView(generics.CreateAPIView):
     """
-    API endpoint that allows users to be viewed or edited.
+    View para registrar nuevos usuarios
     """
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'user': serializer.data,
+                'refresh': str(refresh),
+                'access': str(refresh.access_token)
+            }, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

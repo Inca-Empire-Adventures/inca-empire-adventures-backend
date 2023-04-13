@@ -1,15 +1,19 @@
-from django.http import Http404
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from equipments import serializers
 from equipments.models import Equipment
 from equipments.serializers import EquipmentSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
+from django.db.models import Q
 
 class EquipmentViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = Equipment.objects.all().order_by('id')
     serializer_class = EquipmentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        # Obtener todos los character_detail que pertenecen al usuario
+        queryset = Equipment.objects.filter(character__user=user)
+        # Filtro opcional para buscar por nombre de character
+        character_name = self.request.query_params.get('character_name')
+        if character_name:
+            queryset = queryset.filter(Q(character__user=user) & Q(character__characterName=character_name))
+        return queryset
+    

@@ -1,10 +1,10 @@
 from inca_empire_adventures_backend.constants import ID_USER_CHARACTER, USER_SESION
 from adventures.models import Adventures, Conversation
 from adventures.serializers import AdventureSerializer
+from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from characters.models import Character
 from adventures.enums import RoleType
-from rest_framework import viewsets
 from rest_framework import status
 from django.db.models import Q
 
@@ -13,14 +13,14 @@ import openai
 import os
 
 class AdventureViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Adventures.objects.all().order_by('id')
     serializer_class = AdventureSerializer
 
     def get_queryset(self):
-        #user = self.request.user
+        user = self.request.user
         # Obtener todos los character_detail que pertenecen al usuario
-        #queryset = Adventures.objects.filter(character__user=user)
-        queryset = Adventures.objects.all()
+        queryset = Adventures.objects.filter(character__user=user)
 
         # Filtro opcional para buscar por nombre de character
         character_name = self.request.query_params.get('character_name')
@@ -32,13 +32,14 @@ class AdventureViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         API_KEY = os.environ.get("API_KEY")
         
-        character = Character.objects.get(pk=ID_USER_CHARACTER)
-        description = ''
+        character = Character.objects.get(pk=request.data["character"])
+
         try:
             adventure = Adventures.objects.get(character=character)
         except Exception as e:
             adventure = None
 
+        # Si tengo una aventura iniciada
         if adventure: 
             conversations = Conversation.objects.filter(adventure=adventure)
             messages = []
@@ -92,6 +93,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
             
             return Response(structure_response, status=status.HTTP_201_CREATED)
 
+        #Si estoy iniciando una aventura
         elif adventure == None: 
             messages, new_adventure = self.create_conversations(request, character)
 
@@ -142,14 +144,14 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
     def create_conversations(self, request, character):
         # Obtener el mensaje inicial de la conversación
-        prompt_system = "Hola soy tu dungeon master ¿Como te gustaria iniciar la historia?'"
+        prompt_system = "Eres mi dungeon master experimentado, aplicas reglas d20 y al finalizar una situacion o desafío escribes 'FIN DE LOOP' "
 
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             description = request.data["description"]
 
         #TODO obtener el nombre del jugador - Validar si es el inicio de la historia
-        prompt_user = f"Mi nombre es {USER_SESION} y me encuentro en la epoca del Imperio incaico, {description}"
+        prompt_user = f"Mi nombre es {character.characterName} y me encuentro en la epoca del Imperio incaico, {description}"
         messages = [
             {"role": "system", "content": prompt_system}, 
             {"role":"user", "content": prompt_user}

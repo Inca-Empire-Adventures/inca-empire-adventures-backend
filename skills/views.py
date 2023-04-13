@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from skills.models import Skills
 
 from skills.serializers import SkillsSerializer
@@ -12,3 +11,4 @@ class SkillsViewSet(viewsets.ModelViewSet):
     """
     queryset = Skills.objects.all().order_by('id')
     serializer_class = SkillsSerializer
+    permission_classes = [permissions.IsAuthenticated]

@@ -7,4 +7,4 @@ class AdventureSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Adventures
-        fields = ['id', 'description', 'character', 'url']
+        fields = ['url', 'description', 'character']
