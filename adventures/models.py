@@ -5,7 +5,7 @@ from characters.models import Character
 
 # Create your models here.
 class Adventures(models.Model):
-    description = models.CharField(max_length=250)
+    description = models.TextField()
     character = models.ForeignKey(Character, on_delete=models.CASCADE, null=True)
 
 class Conversation(models.Model):

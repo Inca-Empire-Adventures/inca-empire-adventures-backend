@@ -5,3 +5,4 @@ class RoleType(models.TextChoices):
     SYSTEM  = "system", _('system')
     ASSISTANT = "assistant", _('assistant')
     USER  = "user", _('user')
+    RESUME  = "resume", _('resume')

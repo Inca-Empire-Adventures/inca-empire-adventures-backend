@@ -7,10 +7,15 @@ from characters.models import Character
 from adventures.enums import RoleType
 from rest_framework import status
 from django.db.models import Q
+import tiktoken
+import json
 
 
 import openai
 import os
+from statistics_user.enums import EthnicityType
+
+from statistics_user.models import StatisticsUser
 
 class AdventureViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
@@ -41,14 +46,9 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
         # Si tengo una aventura iniciada
         if adventure: 
-            conversations = Conversation.objects.filter(adventure=adventure)
-            messages = []
-
-            for message in conversations:
-                messages.append({
-                    "role": message.role,
-                    "content": message.content
-                })
+            #Se obtiene la conversacion completa
+            messages = self.obtener_conversacion_resumida(adventure)
+            description = ""
 
             serializer = self.get_serializer(data=request.data)
             if serializer.is_valid():
@@ -58,6 +58,25 @@ class AdventureViewSet(viewsets.ModelViewSet):
                 "role": RoleType.USER,
                 "content":  description
             })
+
+            print("messages")
+            print(json.dumps(messages))
+            print("messages")
+
+
+            total_tokens = self.obtener_cantidad_tokens(json.dumps(messages),"cl100k_base")
+            print("total_tokens")
+            print(total_tokens)
+            print("total_tokens")
+
+            if total_tokens >= 1500:
+                resumen_completo = self.obtener_resumen(adventure)
+                adventure.description = resumen_completo
+                adventure.save()
+
+                #Se crea una conversacion cn el nuevo resumen
+                resumen_conversation = Conversation(adventure=adventure, role=RoleType.RESUME, content=resumen_completo )
+                resumen_conversation.save()
 
             # Iniciar la conversación simulada con el modelo GPT-3.5-turbo
             openai.api_key = API_KEY # Coloca aquí tu propia API key
@@ -98,20 +117,20 @@ class AdventureViewSet(viewsets.ModelViewSet):
             messages, new_adventure = self.create_conversations(request, character)
 
             # Iniciar la conversación simulada con el modelo GPT-3.5-turbo
-            openai.api_key = API_KEY # Coloca aquí tu propia API key
+            openai.api_key = API_KEY # API key
             response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=messages,
-                temperature=0.6,
-                max_tokens=750,
+                temperature=0.7,
+                max_tokens=1000,
                 n=1,
                 stop=None,
-                presence_penalty=0.4,
-                frequency_penalty=0.4,
+                presence_penalty=0,
+                frequency_penalty=0,
             )
 
             # Obtener la respuesta del modelo y crear el objeto Adventure
-            continuation_conversation = response.choices[0].message.content.replace("\n","");
+            continuation_conversation = response.choices[0].message.content#.replace("\n","");
 
             assistant_conversation = Conversation(adventure=new_adventure, role=RoleType.ASSISTANT, content=continuation_conversation)
             assistant_conversation.save()
@@ -144,14 +163,18 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
     def create_conversations(self, request, character):
         # Obtener el mensaje inicial de la conversación
-        prompt_system = "Eres mi dungeon master experimentado, aplicas reglas d20 y al finalizar una situacion o desafío escribes 'FIN DE LOOP' "
-
+        prompt_system = "Eres mi dungeon master. Aplicas el sistema d20. Los resultados de las decisiones utilizan el sistema d20. En cada decision debes preguntar sobre el resultado de mi tirada. Si no se indica el numero del dado d20 debes preguntar de nuevo sobre mi tirada."
+        description = ""
+        
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             description = request.data["description"]
 
-        #TODO obtener el nombre del jugador - Validar si es el inicio de la historia
-        prompt_user = f"Mi nombre es {character.characterName} y me encuentro en la epoca del Imperio incaico, {description}"
+        #Obtener parrafo de estadisticas y etnia del personaje
+        promt_user_statistics = self.obtener_promt_statistics(character);
+
+
+        prompt_user = f"La historia de mi personaje se situa en la epoca del Imperio incaico, {description}. Este es el primer parrafo de mi aventura. {promt_user_statistics}"
         messages = [
             {"role": "system", "content": prompt_system}, 
             {"role":"user", "content": prompt_user}
@@ -167,3 +190,73 @@ class AdventureViewSet(viewsets.ModelViewSet):
             conversation.save()
 
         return messages, new_adventure
+
+    def obtener_promt_statistics(self, character):
+        return f"Mi personaje se llama {character.characterName}, soy descendiente de { character.statistic.get_ethnicityType_display() } y mis estadisticas son las siguientes: { character.statistic.get_statistics_as_dict() }"
+
+    def obtener_cantidad_tokens(self, string: str, encoding_name: str) -> int:
+        """Returns the number of tokens in a text string."""
+        encoding = tiktoken.get_encoding(encoding_name)
+        num_tokens = len(encoding.encode(string))
+        return num_tokens
+    
+    def obtener_resumen(self, adventure):
+        conversacion_completa = self.obtener_conversacion_resumida(adventure)
+        prompt_instrucction = json.dumps(conversacion_completa) + ". Del parrafo anterior ¿Puedes darme una sintesis de lo mas importante ? "
+        API_KEY = os.environ.get("API_KEY")
+        openai.api_key = API_KEY # Coloca aquí tu propia API key
+        response = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=prompt_instrucction,
+            max_tokens=500,
+            n=1,
+            stop=None,
+            temperature=0.1,
+        )
+        resumen = response.choices[0].text.replace("\n","").split('-') 
+
+        return resumen
+    
+    def obtener_conversacion(self, adventure):
+        conversations = Conversation.objects.filter(adventure=adventure)
+        messages = []
+
+        for message in conversations:
+            messages.append({
+                "role": message.role,
+                "content": message.content
+            })
+
+        return messages
+    
+    def obtener_conversacion_resumida(self, adventure):
+        last_resume_conversation = Conversation.objects.filter(adventure=adventure, role=RoleType.RESUME).last()
+        if last_resume_conversation is None:
+            return self.obtener_conversacion(adventure)
+
+        conversations =  Conversation.objects.filter(adventure=adventure, id__gt=last_resume_conversation.id)
+        first_conversation =  Conversation.objects.get(id=1)
+
+
+        messages = [
+            {
+                "role": RoleType.SYSTEM,
+                "content": first_conversation.content
+            },
+            {
+                "role": RoleType.USER,
+                "content": f"El resumen de la historia es la siguiente: {last_resume_conversation.content}"
+            },
+            {
+                "role": RoleType.ASSISTANT,
+                "content": "Entendido, continuare la historia con el resumen"
+            },
+        ]
+
+        for message in conversations:
+            messages.append({
+                "role": message.role,
+                "content": message.content
+            })
+
+        return messages

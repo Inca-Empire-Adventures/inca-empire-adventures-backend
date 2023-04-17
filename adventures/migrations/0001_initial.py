@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             name='Adventures',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('description', models.CharField(max_length=250)),
+                ('description', models.TextField()),
                 ('character', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='characters.character')),
             ],
         ),
