@@ -1,4 +1,3 @@
-from inca_empire_adventures_backend.constants import ID_USER_CHARACTER, USER_SESION
 from adventures.models import Adventures, Conversation
 from adventures.serializers import AdventureSerializer
 from rest_framework import viewsets, permissions
@@ -13,9 +12,6 @@ import json
 
 import openai
 import os
-from statistics_user.enums import EthnicityType
-
-from statistics_user.models import StatisticsUser
 
 class AdventureViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
@@ -171,7 +167,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
             description = request.data["description"]
 
         #Obtener parrafo de estadisticas y etnia del personaje
-        promt_user_statistics = self.obtener_promt_statistics(character);
+        promt_user_statistics = self.obtener_promt_inicial(character);
 
 
         prompt_user = f"La historia de mi personaje se situa en la epoca del Imperio incaico, {description}. Este es el primer parrafo de mi aventura. {promt_user_statistics}"
@@ -191,8 +187,15 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
         return messages, new_adventure
 
-    def obtener_promt_statistics(self, character):
-        return f"Mi personaje se llama {character.characterName}, soy descendiente de { character.statistic.get_ethnicityType_display() } y mis estadisticas son las siguientes: { character.statistic.get_statistics_as_dict() }"
+    def obtener_promt_inicial(self, character):
+        template_aventura_inicial = {
+            "EstadisticasPersonaje": character.statistic.get_statistics_as_dict(),
+            "ContextoGlobalActual": "Imperio incaico",
+            "EtniaPersonaje": character.statistic.get_ethnicityType_display(),
+            "NombrePersonaje": character.characterName
+        }
+
+        return f"template_aventura_inicial: { json.dumps(template_aventura_inicial) }"
 
     def obtener_cantidad_tokens(self, string: str, encoding_name: str) -> int:
         """Returns the number of tokens in a text string."""
@@ -202,13 +205,14 @@ class AdventureViewSet(viewsets.ModelViewSet):
     
     def obtener_resumen(self, adventure):
         conversacion_completa = self.obtener_conversacion_resumida(adventure)
-        prompt_instrucction = json.dumps(conversacion_completa) + ". Del parrafo anterior ¿Puedes darme una sintesis de lo mas importante ? "
+
+        prompt_instrucction = json.dumps(conversacion_completa) + ". Del parrafo anterior Utiliza el template_aventura_inicial con formato json para agregar palabras clave y descripciones que contengan el resumen de toda la conversacion."
         API_KEY = os.environ.get("API_KEY")
         openai.api_key = API_KEY # Coloca aquí tu propia API key
         response = openai.Completion.create(
-            engine="text-davinci-002",
+            engine="text-davinci-003",
             prompt=prompt_instrucction,
-            max_tokens=500,
+            max_tokens=750,
             n=1,
             stop=None,
             temperature=0.1,
