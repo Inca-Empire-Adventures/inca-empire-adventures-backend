@@ -148,16 +148,16 @@ class AdventureViewSet(viewsets.ModelViewSet):
             return Response(structure_response, status=status.HTTP_201_CREATED, headers=headers)
     
     def obtener_opciones(self, text):
-        prompt_instrucction = text + ". Del parrafo anterior ¿Puedes darme una lista de las opciones mencionadas separado por guiones ? ";
+        prompt_instrucction = text + ". Del parrafo anterior ¿Puedes darme una lista de las opciones que puedan continuar con la aventura de forma coherente? Dichas opciones deben empezar con el caracter * y terminar con un punto final. ";
         response = openai.Completion.create(
-            engine="text-davinci-002",
+            engine="text-davinci-003",
             prompt=prompt_instrucction,
-            max_tokens=500,
+            max_tokens=250,
             n=1,
             stop=None,
-            temperature=0.5,
+            temperature=0.55,
         )
-        options = response.choices[0].text.replace("\n","").split('-') 
+        options = response.choices[0].text.replace("\n","").split('*') 
 
         return list(filter(bool, options))
 
