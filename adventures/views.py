@@ -31,7 +31,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
         return queryset
 
     def create(self, request, *args, **kwargs):
-        API_KEY = os.environ.get("API_KEY")
+        
         
         character = Character.objects.get(pk=request.data["character"])
 
@@ -75,17 +75,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
                 resumen_conversation.save()
 
             # Iniciar la conversación simulada con el modelo GPT-3.5-turbo
-            openai.api_key = API_KEY # Coloca aquí tu propia API key
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=messages,
-                temperature=0.6,
-                max_tokens=750,
-                n=1,
-                stop=None,
-                presence_penalty=0.4,
-                frequency_penalty=0.4,
-            )
+            response = self.obtener_response_chat_completion(messages=messages)
 
             # Obtener la respuesta del modelo y crear el objeto Adventure
             continuation_conversation = response.choices[0].message.content.replace("\n","");
@@ -113,17 +103,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
             messages, new_adventure = self.create_conversations(request, character)
 
             # Iniciar la conversación simulada con el modelo GPT-3.5-turbo
-            openai.api_key = API_KEY # API key
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=messages,
-                temperature=0.7,
-                max_tokens=1000,
-                n=1,
-                stop=None,
-                presence_penalty=0,
-                frequency_penalty=0,
-            )
+            response = self.obtener_response_chat_completion(messages=messages)
 
             # Obtener la respuesta del modelo y crear el objeto Adventure
             continuation_conversation = response.choices[0].message.content#.replace("\n","");
@@ -145,14 +125,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
     
     def obtener_opciones(self, text):
         prompt_instrucction = text + ". Del parrafo anterior ¿Puedes darme una lista de las opciones que puedan continuar con la aventura de forma coherente? Dichas opciones deben empezar con el caracter * y terminar con un punto final. ";
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt_instrucction,
-            max_tokens=250,
-            n=1,
-            stop=None,
-            temperature=0.55,
-        )
+        response = self.obtener_response_completion(prompt_instrucction)
         options = response.choices[0].text.replace("\n","").split('*') 
 
         return list(filter(bool, options))
@@ -207,16 +180,9 @@ class AdventureViewSet(viewsets.ModelViewSet):
         conversacion_completa = self.obtener_conversacion_resumida(adventure)
 
         prompt_instrucction = json.dumps(conversacion_completa) + ". Del parrafo anterior Utiliza el template_aventura_inicial con formato json para agregar palabras clave y descripciones que contengan el resumen de toda la conversacion."
-        API_KEY = os.environ.get("API_KEY")
-        openai.api_key = API_KEY # Coloca aquí tu propia API key
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt_instrucction,
-            max_tokens=750,
-            n=1,
-            stop=None,
-            temperature=0.1,
-        )
+        
+        response = self.obtener_response_completion(prompt_instrucction=prompt_instrucction)
+
         resumen = response.choices[0].text.replace("\n","").split('-') 
 
         return resumen
@@ -233,6 +199,35 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
         return messages
     
+    def obtener_response_completion(self, prompt_instrucction, engine_model = "text-davinci-003" ):
+        API_KEY = os.environ.get("API_KEY")
+        openai.api_key = API_KEY # Coloca aquí tu propia API key
+
+        return openai.Completion.create(
+                engine=engine_model,
+                prompt=prompt_instrucction,
+                max_tokens=750,
+                n=1,
+                stop=None,
+                temperature=0.1,
+            )
+
+    def obtener_response_chat_completion(self, messages, engine_model = "gpt-3.5-turbo"):
+        API_KEY = os.environ.get("API_KEY")
+        openai.api_key = API_KEY # API key
+        
+        return openai.ChatCompletion.create(
+                model=engine_model,
+                messages=messages,
+                temperature=0.6,
+                max_tokens=1000,
+                n=1,
+                stop=None,
+                presence_penalty=0,
+                frequency_penalty=0,
+            )
+        
+
     def obtener_conversacion_resumida(self, adventure):
         last_resume_conversation = Conversation.objects.filter(adventure=adventure, role=RoleType.RESUME).last()
         if last_resume_conversation is None:
