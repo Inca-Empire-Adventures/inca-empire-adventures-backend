@@ -3,7 +3,14 @@
 python -m pip install Django
 pip install --upgrade pip
 pip install -r requerimientos.txt
+
 ```
+
+#### Especificar el settings a utilizar en la variable global de:
+```
+export DJANGO_SETTINGS_MODULE=inca_empire_adventures_backend.settings
+```
+
 
 #### Comando para iniciar una imagen de postgres en docker
 ```
