@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-_-iqos0q1dqyfh_z#))i0-ql(+h7^+(%^wb2+1w4ws(=j&5!8t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.100','35.247.196.18','https://inca-empire-adventures.netlify.app','incaempire.site']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.100','35.247.196.18','https://inca-empire-adventures.netlify.app','https://incaempire.site'. 'http://incaempire.site']
 
 
 # Application definition
