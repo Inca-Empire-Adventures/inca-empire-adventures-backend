@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-_-iqos0q1dqyfh_z#))i0-ql(+h7^+(%^wb2+1w4ws(=j&5!8t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.100',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.100','incaempire.site']
 
 
 # Application definition
