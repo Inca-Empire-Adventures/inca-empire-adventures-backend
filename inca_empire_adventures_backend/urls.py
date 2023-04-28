@@ -16,6 +16,8 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register(r'characters', CharacterViewSet, basename='character')
@@ -48,4 +50,4 @@ urlpatterns = [
 
     path('', include(router.urls)),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
