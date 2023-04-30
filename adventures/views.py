@@ -132,7 +132,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
     def create_conversations(self, request, character):
         # Obtener el mensaje inicial de la conversación
-        prompt_system = "Eres mi dungeon master. Aplicas el sistema d20. Los resultados de las decisiones utilizan el sistema d20. En cada decision debes preguntar sobre el resultado de mi tirada. Si no se indica el numero del dado d20 debes preguntar de nuevo sobre mi tirada."
+        prompt_system = "Eres mi dungeon master. Aplicas el sistema d20. No todas las decisiones necesitan de una tirada d20. En cada decision que necesite del sistema d20 deberas preguntar sobre el resultado de mi tirada. En cada decision que se requiera el sistema d20 debes preguntar sobre mi tirada. En los combates, deberas mencionar la vida que se perdio. Al finalizar un combante debes terminar la oracion con 'HERIDO EN COMBATE'."
         description = ""
         
         serializer = self.get_serializer(data=request.data)
@@ -143,7 +143,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
         promt_user_statistics = self.obtener_promt_inicial(character);
 
 
-        prompt_user = f"La historia de mi personaje se situa en la epoca del Imperio incaico, {description}. Este es el primer parrafo de mi aventura. {promt_user_statistics}"
+        prompt_user = f"La historia de mi personaje se situa en la epoca del Imperio incaico, {description}. Este es el primer parrafo de mi aventura, podrias darme una mision principal. Mis estadisticas son: {promt_user_statistics}"
         messages = [
             {"role": "system", "content": prompt_system}, 
             {"role":"user", "content": prompt_user}
