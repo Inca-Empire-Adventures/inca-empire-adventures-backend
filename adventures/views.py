@@ -1,4 +1,5 @@
 from adventures.models import Adventures, Conversation
+from adventures.promts import PROMT_MISION_PRINCIPAL_PLAYER, PROMT_OBTENCION_OPCIONES, PROMT_OBTENCION_RESUMEN, PROMT_PLAYER_CONTEXT, PROMT_RECORDAR_SISTEMA_D20, PROMT_SYSTEM_CONTEXT
 from adventures.serializers import AdventureSerializer
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
@@ -30,9 +31,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(Q(character__user=user) & Q(character__characterName=character_name))
         return queryset
 
-    def create(self, request, *args, **kwargs):
-        
-        
+    def create(self, request, *args, **kwargs): 
         character = Character.objects.get(pk=request.data["character"])
 
         try:
@@ -49,6 +48,11 @@ class AdventureViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(data=request.data)
             if serializer.is_valid():
                 description = request.data["description"]
+
+            #Validar envio de recordatorio de sistema d20
+            recordar_sistema_d20 = self.validar_recordatorio_sistema_d20(adventure=adventure)
+            if recordar_sistema_d20:
+                description = description + PROMT_RECORDAR_SISTEMA_D20
 
             messages.append({
                 "role": RoleType.USER,
@@ -124,7 +128,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
             return Response(structure_response, status=status.HTTP_201_CREATED, headers=headers)
     
     def obtener_opciones(self, text):
-        prompt_instrucction = text + ". Del parrafo anterior ¿Puedes darme una lista de las opciones que puedan continuar con la aventura de forma coherente? Dichas opciones deben empezar con el caracter * y terminar con un punto final. ";
+        prompt_instrucction = text + PROMT_OBTENCION_OPCIONES;
         response = self.obtener_response_completion(prompt_instrucction)
         options = response.choices[0].text.replace("\n","").split('*') 
 
@@ -132,7 +136,6 @@ class AdventureViewSet(viewsets.ModelViewSet):
 
     def create_conversations(self, request, character):
         # Obtener el mensaje inicial de la conversación
-        prompt_system = "Eres mi dungeon master. Aplicas el sistema d20.  No todas las decisiones necesitan de una tirada d20. No puedes hacer tiradas d20. Solo puede hacer tiradas el jugador. En cada decision que necesite del sistema d20 deberas preguntar sobre el resultado de mi tirada. En cada decision que se requiera el sistema d20 debes preguntar sobre mi tirada. En los combates, deberas mencionar la vida que se perdio. Al finalizar un combante debes terminar la oracion con 'HERIDO EN COMBATE'."
         description = ""
         
         serializer = self.get_serializer(data=request.data)
@@ -143,9 +146,9 @@ class AdventureViewSet(viewsets.ModelViewSet):
         promt_user_statistics = self.obtener_promt_inicial(character);
 
 
-        prompt_user = f"La historia de mi personaje se situa en la epoca del Imperio incaico, {description}. Este es el primer parrafo de mi aventura, podrias darme una mision principal. Mis estadisticas son: {promt_user_statistics}"
+        prompt_user = f"{PROMT_PLAYER_CONTEXT} {description} {PROMT_MISION_PRINCIPAL_PLAYER} Mis estadisticas son: {promt_user_statistics}"
         messages = [
-            {"role": "system", "content": prompt_system}, 
+            {"role": "system", "content": PROMT_SYSTEM_CONTEXT}, 
             {"role":"user", "content": prompt_user}
         ]
 
@@ -179,7 +182,7 @@ class AdventureViewSet(viewsets.ModelViewSet):
     def obtener_resumen(self, adventure):
         conversacion_completa = self.obtener_conversacion_resumida(adventure)
 
-        prompt_instrucction = json.dumps(conversacion_completa) + ". Del parrafo anterior Utiliza el template_aventura_inicial con formato json para agregar palabras clave y descripciones que contengan el resumen de toda la conversacion."
+        prompt_instrucction = json.dumps(conversacion_completa) + PROMT_OBTENCION_RESUMEN
         
         response = self.obtener_response_completion(prompt_instrucction=prompt_instrucction)
 
@@ -227,7 +230,6 @@ class AdventureViewSet(viewsets.ModelViewSet):
                 frequency_penalty=0,
             )
         
-
     def obtener_conversacion_resumida(self, adventure):
         last_resume_conversation = Conversation.objects.filter(adventure=adventure, role=RoleType.RESUME).last()
         if last_resume_conversation is None:
@@ -259,3 +261,10 @@ class AdventureViewSet(viewsets.ModelViewSet):
             })
 
         return messages
+    
+    def validar_recordatorio_sistema_d20(self, adventure):
+        ultimas_tres_respuestas = Conversation.objects.filter(adventure=adventure, role=RoleType.USER).order_by('-id')[:3]
+        for respuesta in ultimas_tres_respuestas:
+            if any(char.isdigit() for char in respuesta.content):
+                return False
+        return True

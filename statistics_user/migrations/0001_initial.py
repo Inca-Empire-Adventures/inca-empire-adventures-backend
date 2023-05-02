@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('charisma', models.IntegerField()),
                 ('wisdom', models.IntegerField()),
                 ('constitucion', models.IntegerField()),
-                ('ethnicityType', models.CharField(choices=[('GOD_OF_SUN', 'God of Sun'), ('GOD_OF_DEATH', 'God of Death'), ('GOD_OF_MOON', 'God of Moon'), ('GOD_OF_EARTH', 'God of Earth')], max_length=50)),
+                ('ethnicityType', models.CharField(choices=[('GOD_OF_SUN', 'Dios del Sol'), ('GOD_OF_DEATH', 'Dios de la Muerte'), ('GOD_OF_MOON', 'Dios de la Luna'), ('GOD_OF_EARTH', 'Dios de la Tierra')], max_length=50)),
             ],
         ),
     ]
