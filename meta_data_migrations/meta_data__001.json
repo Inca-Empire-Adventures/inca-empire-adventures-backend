@@ -579,7 +579,7 @@
         "model": "auth.user",
         "pk": 1,
         "fields": {
-            "password": "pbkdf2_sha256$390000$KuPutgWS8gTzO5a2wxEOMz$0Yy9n3FHR9bME8Y1Rj38leqFd5IAUgZ3LW433Xpwv58=",
+            "password": "pbkdf2_sha256$390000$8AWh18JUEZ6gIZioZnZVYw$wr5s2X3fgoFnEgDR6zFvG4/miZuWjUzF2VBlJQHL444=",
             "last_login": "2023-04-03T04:38:33.738Z",
             "is_superuser": true,
             "username": "nivra",
@@ -804,7 +804,7 @@
             "charisma": 0,
             "wisdom": 0,
             "constitucion": 0,
-            "ethnicityType": "GOD_OF_SUN"
+            "ethnicityType": "Dios del Sol"
         }
     },
     {
@@ -817,7 +817,7 @@
             "charisma": 0,
             "wisdom": 0,
             "constitucion": 0,
-            "ethnicityType": "GOD_OF_DEATH"
+            "ethnicityType": "Dios de la Muerte"
         }
     },
     {
@@ -830,7 +830,7 @@
             "charisma": 1,
             "wisdom": 1,
             "constitucion": 1,
-            "ethnicityType": "GOD_OF_MOON"
+            "ethnicityType": "Dios de la Luna"
         }
     },
     {
@@ -843,14 +843,14 @@
             "charisma": 0,
             "wisdom": 0,
             "constitucion": 0,
-            "ethnicityType": "GOD_OF_EARTH"
+            "ethnicityType": "Dios de la Tierra"
         }
     },
     {
         "model": "item.item",
         "pk": 1,
         "fields": {
-            "name": "Fire Cloak",
+            "name": "Capa de fuego",
             "itemType": "CONSUMIBLE"
         }
     },
@@ -858,7 +858,7 @@
         "model": "item.item",
         "pk": 2,
         "fields": {
-            "name": "Death Mask",
+            "name": "Mascara de la muerte",
             "itemType": "ARMA"
         }
     },
@@ -866,7 +866,7 @@
         "model": "item.item",
         "pk": 3,
         "fields": {
-            "name": "Cursed Jewel",
+            "name": "Joya maldita",
             "itemType": "ARMA"
         }
     },
@@ -874,7 +874,7 @@
         "model": "item.item",
         "pk": 4,
         "fields": {
-            "name": "Bow",
+            "name": "Arco",
             "itemType": "CONSUMIBLE"
         }
     },
